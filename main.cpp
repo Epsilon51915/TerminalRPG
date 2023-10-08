@@ -59,7 +59,8 @@ void menuChoice(int player_selection, Player& user)
         break;
 
     case 3:
-        user.getInventory();
+        // user.getInventory();
+        // Because this doesn't work anyways
         break;
 
     case 4:
