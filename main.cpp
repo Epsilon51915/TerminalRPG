@@ -47,7 +47,7 @@ int main(){
         user.exp = 1000;
     }
     user.sayHello();
-    this_thread::sleep_for(1500ms);
+    this_thread::sleep_for(1500ms); // settings.text_speed + 500ms to modify
     user.printLore();
     this_thread::sleep_for(2000ms);
 
@@ -85,6 +85,8 @@ void menuChoice(int player_selection, Player& user, Settings& settings)
 
     case 5:
         settings.showGameSettings();
+        cout << endl;
+        this_thread::sleep_for(settings.text_speed + 2000ms);
         break;
     
     default:
