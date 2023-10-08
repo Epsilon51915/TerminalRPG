@@ -17,7 +17,7 @@ void Player::sayHello()
     return;
 }
 
-void Player::getLore()
+void Player::printLore()
 {
     cout << "Yeah there's a king in a castle doing shady stuff probably." << endl;
     this_thread::sleep_for(1000ms);
@@ -29,7 +29,7 @@ void Player::getLore()
     this_thread::sleep_for(1000ms);
 }
 
-void Player::getStats()
+void Player::printStats()
 {
     cout << name << "'s Level: " << level << endl;
     cout << name << "'s HP: " << health << endl;
@@ -59,11 +59,13 @@ void Player::getStats()
         Will of the Mountain (Boosts ATK by 5 and DEF by 10) [Obtainable by defeats the Mountains boss]
         Crown of the King (Congratulations!!) [Obtainable by defeating the King]
     */
-void Inventory::getInventory()
+void Inventory::printInventory()
 {
-    cout << "[1. " << item_1 << " (" << item_1_quantity << "/10) ]  [2. " << item_2 << " (" << item_2_quantity << "/10) ]" << endl;
-    cout << "[3. " << item_3 << " (" << item_3_quantity << "/10) ]  [4. " << item_4 << " (" << item_4_quantity << "/10) ]" << endl;
-    cout << "[5. " << item_5 << " (" << item_5_quantity << "/10) ]  [6. " << item_6 << " (" << item_6_quantity << "/10) ]" << endl;
-    cout << "[7. " << item_7 << " (" << item_7_quantity << "/10) ]  [8. " << item_8 << " (" << item_8_quantity << "/10) ]" << endl;
-    cout << "[9. " << item_9 << " (" << item_9_quantity << "/10) ]  [10. " << item_10 << " (" << item_10_quantity << "/10) ]" << endl;
+    // cout << "[1. " << item_1 << " (" << item_1_quantity << "/10) ]  [2. " << item_2 << " (" << item_2_quantity << "/10) ]" << endl;
+    // cout << "[3. " << item_3 << " (" << item_3_quantity << "/10) ]  [4. " << item_4 << " (" << item_4_quantity << "/10) ]" << endl;
+    // cout << "[5. " << item_5 << " (" << item_5_quantity << "/10) ]  [6. " << item_6 << " (" << item_6_quantity << "/10) ]" << endl;
+    // cout << "[7. " << item_7 << " (" << item_7_quantity << "/10) ]  [8. " << item_8 << " (" << item_8_quantity << "/10) ]" << endl;
+    // cout << "[9. " << item_9 << " (" << item_9_quantity << "/10) ]  [10. " << item_10 << " (" << item_10_quantity << "/10) ]" << endl;
+
+    cout << "[1. " << potion1.name << " (" << potion1.quantity << "/10) ]  [2. " << potion2.name << " (" << potion2.quantity << "/10) ]" << endl;
 }

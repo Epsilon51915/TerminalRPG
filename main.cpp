@@ -5,6 +5,7 @@
 #include "intro.hpp"
 #include "player.hpp"
 #include "playerChoiceCatalogue.hpp"
+#include "settings.hpp"
 using namespace std;
 
 string promptAndGetName()
@@ -16,7 +17,7 @@ string promptAndGetName()
     return name;
 }
 
-void menuChoice(int, Inventory user);
+void menuChoice(int, Player& user);
 
 int main(){
     intro();
@@ -30,17 +31,16 @@ int main(){
     }
     string name = promptAndGetName();
     Player user(name);
-    Inventory user1;
     user.sayHello();
     this_thread::sleep_for(1500ms);
-    user.getLore();
+    user.printLore();
     this_thread::sleep_for(2000ms);
 
     int player_selection = 0;
     while (player_selection != 1)
     {
     player_selection = menu();
-        menuChoice(player_selection);
+        menuChoice(player_selection, user);
     }
     return 0;
 }
@@ -50,25 +50,26 @@ void menuChoice(int player_selection, Player& user)
     switch (player_selection)
     {
     case 1:
-        // Call getTravel()
+        // Call printTravel()
         break;
 
     case 2:
-        user.getStats();
+        user.printStats();
         this_thread::sleep_for(3000ms);
         break;
 
     case 3:
-        // user.getInventory();
-        // Because this doesn't work anyways
+        user.inventory.printInventory();
+        cout << endl;
+        this_thread::sleep_for(3000ms);
         break;
 
     case 4:
-        // Call getMonsterCatalogue()
+        // Call printMonsterCatalogue()
         break;
 
     case 5:
-        // Call gameSettings()
+        // Call showGameSettings()
         break;
     
     default:
