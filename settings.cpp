@@ -7,28 +7,27 @@
 
 using namespace std;
 
-int Settings::showGameSettings(){
+int Settings::showGameSettings(int input){
 
-    int settings_input = -1;
     cout << "Text speed: " << fixed << setprecision(1) << text_speed.count() / 1000 << " seconds." << endl;
     this_thread::sleep_for(text_speed);
     do
     {
     cout << "Press 1 to edit settings. Press 0 to exit." << endl;
-    cin >> settings_input;
-    if (settings_input != 0 && settings_input != 1)
+    cin >> input;
+    if (input != 0 && input != 1)
     {
         cout << "Nope. Try again." << endl;
         this_thread::sleep_for(text_speed);
     }
-    } while (settings_input != 1 && settings_input != 0);
-    return settings_input;
+    } while (input != 1 && input != 0);
+    return input;
 
 }
 
-void Settings::changeSettings(int settings_input)
+void Settings::changeSettings(int input)
 {   
-    if (settings_input == 1)
+    if (input == 1)
     {
         int text_speed_new;
         cout << "[1. .5s]" << endl;

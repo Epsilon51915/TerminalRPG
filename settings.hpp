@@ -7,7 +7,7 @@ using namespace std::chrono_literals;
 struct Settings
 {
     std::chrono::duration <double, std::milli> text_speed = 2000ms;
-    int showGameSettings();
+    int showGameSettings(int);
     void changeSettings(int);
     private:
 };

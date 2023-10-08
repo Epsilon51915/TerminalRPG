@@ -6,6 +6,7 @@
 #include "player.hpp"
 #include "playerChoiceCatalogue.hpp"
 #include "settings.hpp"
+#include "sleepFor.hpp"
 using namespace std;
 
 string promptAndGetName()
@@ -17,7 +18,7 @@ string promptAndGetName()
     return name;
 }
 
-void menuChoice(int, Player& user, Settings& settings);
+void menuChoice(int, Player& user, Settings& settings, int);
 
 
 
@@ -55,12 +56,12 @@ int main(){
     while (player_selection != 1)
     {
     player_selection = menu();
-        menuChoice(player_selection, user, settings);
+        menuChoice(player_selection, user, settings, input);
     }
     return 0;
 }
 
-void menuChoice(int player_selection, Player& user, Settings& settings)
+void menuChoice(int player_selection, Player& user, Settings& settings, int input)
 {
     switch (player_selection)
     {
@@ -84,7 +85,12 @@ void menuChoice(int player_selection, Player& user, Settings& settings)
         break;
 
     case 5:
-        settings.showGameSettings();
+        input = 0;
+        input = settings.showGameSettings(input);
+        if (input != 0)
+        {
+            settings.changeSettings(input);
+        }
         cout << endl;
         this_thread::sleep_for(settings.text_speed + 2000ms);
         break;
