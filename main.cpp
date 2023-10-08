@@ -17,12 +17,16 @@ string promptAndGetName()
     return name;
 }
 
-void menuChoice(int, Player& user);
+void menuChoice(int, Player& user, Settings& settings);
+
+
 
 int main(){
+
+    Settings settings;
     intro();
 
-    this_thread::sleep_for(1000ms);
+    this_thread::sleep_for(settings.text_speed);
 
     int input = selectScreen();
     if (input == 4)
@@ -31,6 +35,17 @@ int main(){
     }
     string name = promptAndGetName();
     Player user(name);
+    if (name == "")
+    {
+        user.level = 1000;
+        user.health = 1000;
+        user.attack = 1000;
+        user.defense = 1000;
+        user.speed = 1000;
+        user.magic_attack = 1000;
+        user.magic_defense = 1000;
+        user.exp = 1000;
+    }
     user.sayHello();
     this_thread::sleep_for(1500ms);
     user.printLore();
@@ -40,12 +55,12 @@ int main(){
     while (player_selection != 1)
     {
     player_selection = menu();
-        menuChoice(player_selection, user);
+        menuChoice(player_selection, user, settings);
     }
     return 0;
 }
 
-void menuChoice(int player_selection, Player& user)
+void menuChoice(int player_selection, Player& user, Settings& settings)
 {
     switch (player_selection)
     {
@@ -63,13 +78,13 @@ void menuChoice(int player_selection, Player& user)
         cout << endl;
         this_thread::sleep_for(3000ms);
         break;
-
+        // user.inventory.item1.quantity++;
     case 4:
         // Call printMonsterCatalogue()
         break;
 
     case 5:
-        // Call showGameSettings()
+        settings.showGameSettings();
         break;
     
     default:
