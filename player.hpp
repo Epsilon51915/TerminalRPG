@@ -1,3 +1,5 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 #include <string>
 
 struct PlayerItem
@@ -57,3 +59,4 @@ void sayHello();
 void printLore();
 void printStats();
 };
+#endif
