@@ -14,6 +14,13 @@ struct Inventory
     PlayerItem potion1{.name = "Potion Level 1", .quantity = 0};
     PlayerItem potion2{.name = "Potion Level 2", .quantity = 0};
     PlayerItem potion3{.name = "Potion Level 3", .quantity = 0};
+    PlayerItem defense_flask1{.name = "Defensive Flask Level 1", .quantity = 0};
+    PlayerItem defense_flask2{.name = "Defensive Flask Level 2", .quantity = 0};
+    PlayerItem defense_flask3{.name = "Defensive Flask Level 3", .quantity = 0};
+    PlayerItem offense_flask1{.name = "Offensive Flask Level 1", .quantity = 0};
+    PlayerItem offense_flask2{.name = "Offensive Flask Level 2", .quantity = 0};
+    PlayerItem offense_flask3{.name = "Offensive Flask Level 3", .quantity = 0};
+    PlayerItem sand{.name = "Pouch of Sand", .quantity = 0};
     // std::string item_1 = "";
     // std::string item_2 = "";
     // std::string item_3 = "";

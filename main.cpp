@@ -34,7 +34,7 @@ int main(){
     }
     string name = promptAndGetName();
     Player user(name);
-    if (name == "")
+    if (name == "Epsilon")
     {
         user.level = 1000;
         user.health = 1000;

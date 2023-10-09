@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-Player::Player(const std::string& name) : name(name), level(1), health(5), attack(1), defense(0), speed(5), magic_attack(0), magic_defense(0), exp(0) {}
+Player::Player(const std::string& name) : name(name), level(1), health(5), attack(1), defense(0), speed(1), magic_attack(0), magic_defense(0), exp(0) {}
 
 
 void Player::sayHello()
@@ -67,4 +67,9 @@ void Inventory::printInventory()
     // cout << "[9. " << item_9 << " (" << item_9_quantity << "/10) ]  [10. " << item_10 << " (" << item_10_quantity << "/10) ]" << endl;
 
     cout << "[1. " << potion1.name << " (" << potion1.quantity << "/10) ]  [2. " << potion2.name << " (" << potion2.quantity << "/10) ]" << endl;
+    cout << "[3. " << potion3.name << " (" << potion3.quantity << "/10) ]  [4. " << defense_flask1.name << " (" << defense_flask1.quantity << "/10) ]" << endl;
+    cout << "[5. " << defense_flask2.name << " (" << defense_flask2.quantity << "/10) ]  [6. " << defense_flask3.name << " (" << defense_flask3.quantity << "/10) ]" << endl;
+    cout << "[7. " << offense_flask1.name << " (" << offense_flask1.quantity << "/10) ]  [8. " << offense_flask2.name << " (" << offense_flask2.quantity << "/10) ]" << endl;
+    cout << "[9. " << offense_flask3.name << " (" << offense_flask3.quantity << "/10) ]  [2. " << sand.name << " (" << sand.quantity << "/10) ]" << endl;
+
 }

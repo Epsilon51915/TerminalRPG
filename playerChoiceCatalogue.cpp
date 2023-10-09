@@ -2,6 +2,7 @@
 #include <string>
 #include "playerChoiceCatalogue.hpp"
 #include "sleepFor.hpp"
+#include "settings.hpp"
 using namespace std;
 
     // Player Choices: 
