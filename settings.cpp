@@ -1,16 +1,15 @@
 #include <iostream>
 #include <iomanip>
-#include <chrono>
-#include <thread>
 
 #include "settings.hpp"
+#include "sleepFor.hpp"
 
 using namespace std;
 
 int Settings::showGameSettings(int input){
 
     cout << "Text speed: " << fixed << setprecision(1) << text_speed.count() / 1000 << " seconds." << endl;
-    this_thread::sleep_for(text_speed);
+    sleepFor(text_speed);
     do
     {
     cout << "Press 1 to edit settings. Press 0 to exit." << endl;
@@ -18,7 +17,7 @@ int Settings::showGameSettings(int input){
     if (input != 0 && input != 1)
     {
         cout << "Nope. Try again." << endl;
-        this_thread::sleep_for(text_speed);
+        sleepFor(text_speed);
     }
     } while (input != 1 && input != 0);
     return input;
@@ -36,7 +35,7 @@ void Settings::changeSettings(int input)
         cout << "[4. 2s]" << endl;
         cout << "[5. 3s]" << endl;
         cin >> text_speed_new;
-        this_thread::sleep_for(text_speed);
+        sleepFor(text_speed);
         switch (text_speed_new)
         {
         case 1:
@@ -64,7 +63,7 @@ void Settings::changeSettings(int input)
             break;
         }
         cout << "Text speed changed." << endl;
-        this_thread::sleep_for(text_speed);
+        sleepFor(text_speed);
         return;
     }
     else{};

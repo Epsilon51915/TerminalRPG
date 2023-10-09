@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
-#include <chrono>
-#include <thread>
 #include "playerChoiceCatalogue.hpp"
+#include "sleepFor.hpp"
 using namespace std;
 
     // Player Choices: 
@@ -25,27 +24,27 @@ int menu()
     {
     case 1:
         cout << "Beginning travels..." << endl;
-        this_thread::sleep_for(1000ms);
+        sleepFor(1000ms);
         break;
 
     case 2:
         cout << "Checking stats..." << endl;
-        this_thread::sleep_for(1000ms);
+        sleepFor(1000ms);
         break;
 
     case 3:
         cout << "Opening inventory..." << endl;
-        this_thread::sleep_for(1000ms);
+        sleepFor(1000ms);
         break;
 
     case 4:
         cout << "Dusting off the Monster Catalogue..." << endl;
-        this_thread::sleep_for(1000ms);
+        sleepFor(1000ms);
         break;
 
     case 5:
         cout << "Opening Settings..." << endl;
-        this_thread::sleep_for(1000ms);
+        sleepFor(1000ms);
         break;
     
     default:

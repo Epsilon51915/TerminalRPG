@@ -1,9 +1,8 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
-// this_thread::sleep_for(1000ms);
+// sleepFor(1000ms);
 
 #include "player.hpp"
+#include "sleepFor.hpp"
 using namespace std;
 
 
@@ -20,13 +19,13 @@ void Player::sayHello()
 void Player::printLore()
 {
     cout << "Yeah there's a king in a castle doing shady stuff probably." << endl;
-    this_thread::sleep_for(1000ms);
+    sleepFor(1000ms);
     cout << "Probably planning on raising taxes again." << endl;
-    this_thread::sleep_for(1000ms);
+    sleepFor(1000ms);
     cout << "Or hosting a badmitton tournament." << endl;
-    this_thread::sleep_for(1000ms);
+    sleepFor(1000ms);
     cout << "You should stop him. Maybe. I don't care." << endl << endl;
-    this_thread::sleep_for(1000ms);
+    sleepFor(1000ms);
 }
 
 void Player::printStats()

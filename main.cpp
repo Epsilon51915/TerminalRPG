@@ -1,6 +1,4 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
 
 #include "intro.hpp"
 #include "player.hpp"
@@ -27,7 +25,7 @@ int main(){
     Settings settings;
     intro();
 
-    this_thread::sleep_for(settings.text_speed);
+    sleepFor(settings.text_speed);
 
     int input = selectScreen();
     if (input == 4)
@@ -48,9 +46,9 @@ int main(){
         user.exp = 1000;
     }
     user.sayHello();
-    this_thread::sleep_for(1500ms); // settings.text_speed + 500ms to modify
+    sleepFor(settings.text_speed); // settings.text_speed + 500ms to modify
     user.printLore();
-    this_thread::sleep_for(2000ms);
+    sleepFor(settings.text_speed);
 
     int player_selection = 0;
     while (player_selection != 1)
@@ -71,13 +69,13 @@ void menuChoice(int player_selection, Player& user, Settings& settings, int inpu
 
     case 2:
         user.printStats();
-        this_thread::sleep_for(3000ms);
+        sleepFor(settings.text_speed + 2000ms);
         break;
 
     case 3:
         user.inventory.printInventory();
         cout << endl;
-        this_thread::sleep_for(3000ms);
+        sleepFor(settings.text_speed + 2000ms);
         break;
         // user.inventory.item1.quantity++;
     case 4:
@@ -92,7 +90,7 @@ void menuChoice(int player_selection, Player& user, Settings& settings, int inpu
             settings.changeSettings(input);
         }
         cout << endl;
-        this_thread::sleep_for(settings.text_speed + 2000ms);
+        sleepFor(settings.text_speed + 2000ms);
         break;
     
     default:
