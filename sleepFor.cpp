@@ -8,5 +8,5 @@ using namespace std;
 using namespace std::chrono_literals;
 void sleepFor(std::chrono::duration <double, milli> text_speed)
 {
-    sleepFor(text_speed);
+    this_thread::sleep_for(text_speed);
 }
