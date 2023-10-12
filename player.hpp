@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 #include <string>
-
+#include "settings.hpp"
 struct PlayerItem
 {
     std::string name;
