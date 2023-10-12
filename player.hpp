@@ -63,7 +63,7 @@ public:
 Player (const std::string& name);
 
 void sayHello();
-void printLore();
+void printLore(Settings& settings);
 void printStats();
 };
 #endif

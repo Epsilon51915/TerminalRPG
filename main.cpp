@@ -27,7 +27,7 @@ int main(){
 
     sleepFor(settings.text_speed);
 
-    int input = selectScreen();
+    int input = selectScreen(settings);
     if (input == 4)
     {
         return 0;
@@ -47,13 +47,13 @@ int main(){
     }
     user.sayHello();
     sleepFor(settings.text_speed); // settings.text_speed + 500ms to modify
-    user.printLore();
+    user.printLore(settings);
     sleepFor(settings.text_speed);
 
     int player_selection = 0;
     while (player_selection != 1)
     {
-    player_selection = menu();
+    player_selection = menu(settings);
         menuChoice(player_selection, user, settings, input);
     }
     return 0;

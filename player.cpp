@@ -3,6 +3,7 @@
 
 #include "player.hpp"
 #include "sleepFor.hpp"
+#include "settings.hpp"
 using namespace std;
 
 
@@ -16,16 +17,16 @@ void Player::sayHello()
     return;
 }
 
-void Player::printLore()
+void Player::printLore(Settings& settings)
 {
     cout << "Yeah there's a king in a castle doing shady stuff probably." << endl;
-    sleepFor(1000ms);
+    sleepFor(settings.text_speed);
     cout << "Probably planning on raising taxes again." << endl;
-    sleepFor(1000ms);
+    sleepFor(settings.text_speed);
     cout << "Or hosting a badmitton tournament." << endl;
-    sleepFor(1000ms);
+    sleepFor(settings.text_speed);
     cout << "You should stop him. Maybe. I don't care." << endl << endl;
-    sleepFor(1000ms);
+    sleepFor(settings.text_speed);
 }
 
 void Player::printStats()

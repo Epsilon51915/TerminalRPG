@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "playerChoiceCatalogue.hpp"
+#include "player.hpp"
 #include "sleepFor.hpp"
 #include "settings.hpp"
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
     // Check Purity Items (IF AT LEAST ONE BOSS HAS BEEN DEFEATED)
     // Monster Catalogue (EXPERIMENTAL)
     // Settings
-int menu()
+int menu(Settings& settings)
 {
     cout << "[1. Travel]            [2. Check Stats]" <<  endl;
     cout << "[3. Check Items]       {4. Monster Catalogue}" << endl;
@@ -25,27 +26,27 @@ int menu()
     {
     case 1:
         cout << "Beginning travels..." << endl;
-        sleepFor(1000ms);
+        sleepFor(settings.text_speed);
         break;
 
     case 2:
         cout << "Checking stats..." << endl;
-        sleepFor(1000ms);
+        sleepFor(settings.text_speed);
         break;
 
     case 3:
         cout << "Opening inventory..." << endl;
-        sleepFor(1000ms);
+        sleepFor(settings.text_speed);
         break;
 
     case 4:
         cout << "Dusting off the Monster Catalogue..." << endl;
-        sleepFor(1000ms);
+        sleepFor(settings.text_speed);
         break;
 
     case 5:
         cout << "Opening Settings..." << endl;
-        sleepFor(1000ms);
+        sleepFor(settings.text_speed);
         break;
     
     default:

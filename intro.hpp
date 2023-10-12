@@ -1,5 +1,5 @@
 #ifndef INTRO_HPP
 #define INTRO_HPP
 void intro();
-int selectScreen();
+int selectScreen(Settings& settings);
 #endif
