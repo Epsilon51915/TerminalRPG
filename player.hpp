@@ -44,7 +44,7 @@ struct Inventory
     void printInventory();
 };
 
-
+struct Settings;
 
 struct Player
 {
@@ -58,7 +58,7 @@ public:
     unsigned int magic_attack;
     unsigned int magic_defense;
     unsigned int exp;
-    
+
     Inventory inventory;
 Player (const std::string& name);
 
