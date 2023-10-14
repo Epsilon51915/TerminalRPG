@@ -1,7 +1,6 @@
 #ifndef MONSTERCATALOGUE_HPP
 #define MONSTERCATALOGUE_HPP
 #include <string>
-
 struct MonsterCatalogue
 {
     std::string area_name;

@@ -3,7 +3,6 @@
 #include "monsterCatalogue.hpp"
 #include "sleepFor.hpp"
 #include "settings.hpp"
-
 using namespace std;
 
 
@@ -28,12 +27,15 @@ int MonsterCatalogue::getMonsterCataloguePage(int input)
         break;
 
     case 2:
+        cout << "Forest:" << endl << endl;
         break;
 
     case 3:
+        cout << "Mountains:" << endl << endl;
         break;
 
     case 4:
+        cout << "Castle:" << endl << endl;
         break;
 
     default:
