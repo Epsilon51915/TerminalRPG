@@ -35,7 +35,6 @@ void Settings::changeSettings(int input)
         cout << "[4. 2s]" << endl;
         cout << "[5. 3s]" << endl;
         cin >> text_speed_new;
-        sleepFor(text_speed);
         switch (text_speed_new)
         {
         case 1:
@@ -62,6 +61,7 @@ void Settings::changeSettings(int input)
             cout << "Man you should really go to a math class. Or kindergarten. That's where you learn numbers." << endl;
             break;
         }
+        sleepFor(text_speed);
         cout << "Text speed changed." << endl;
         sleepFor(text_speed);
         return;

@@ -9,13 +9,13 @@ rpg.exe: main.obj intro.obj player.obj playerChoiceCatalogue.obj settings.obj sl
 main.obj: main.cpp intro.hpp player.hpp playerChoiceCatalogue.hpp sleepFor.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-intro.obj: intro.cpp intro.hpp sleepFor.hpp
+intro.obj: intro.cpp intro.hpp sleepFor.hpp settings.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-player.obj: player.cpp player.hpp sleepFor.hpp
+player.obj: player.cpp player.hpp sleepFor.hpp settings.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-playerChoiceCatalogue.obj: playerChoiceCatalogue.cpp playerChoiceCatalogue.hpp sleepFor.hpp
+playerChoiceCatalogue.obj: playerChoiceCatalogue.cpp playerChoiceCatalogue.hpp sleepFor.hpp settings.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
 settings.obj: settings.cpp settings.hpp sleepFor.hpp

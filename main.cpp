@@ -27,7 +27,7 @@ int main(){
     sleepFor(settings.text_speed);
 
     // Shows the user the start screen
-    int input = selectScreen();
+    int input = selectScreen(settings);
 
     // User quit the game.
     if (input == 4)
@@ -57,7 +57,7 @@ int main(){
     sleepFor(settings.text_speed); // settings.text_speed + 500ms to modify
 
     // Game lore that I totally didn't just write up in 30 seconds.
-    user.printLore();
+    user.printLore(settings);
     sleepFor(settings.text_speed);
 
     

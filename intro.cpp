@@ -3,6 +3,7 @@
 
 #include "intro.hpp"
 #include "sleepFor.hpp"
+#include "settings.hpp"
 using namespace std;
 
 void intro()
@@ -34,7 +35,7 @@ void intro()
     "    |   |                                                                   |   |" << endl;
 
 }
-int selectScreen(){
+int selectScreen(Settings& settings){
 
     int input;
     
@@ -52,46 +53,46 @@ int selectScreen(){
         {
         case 1:
             cout << "Beginning game!!" << endl << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             break;
 
         case 2:
             cout << "This is a small RPG created by a bored CSCI student" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "spanning X lines of C++ code, this is a tiny passion project" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "that has no purpose besides proving to myself that I can" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "do this. With that being said, enjoy!" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             break;
 
         case 3:
             cout << "My Patreon is" << endl;
-            sleepFor(750ms);
+            sleepFor(settings.text_speed);
             cout << "up your ass!" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             break;
 
         case 4:
             cout << "Exiting program . . ." << endl;
-            sleepFor(500ms);
+            sleepFor(settings.text_speed);
             cout << ". . ." << endl;
-            sleepFor(500ms);
+            sleepFor(settings.text_speed);
             cout << ". . ." << endl;
-            sleepFor(500ms);
+            sleepFor(settings.text_speed);
             return input;
             break;
         
         default:
             cout << "It seems like you're not good with numbers!" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "Don't worry, a lot of people aren't!" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "So we can try this again." << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             cout << "You've got this!" << endl;
-            sleepFor(1000ms);
+            sleepFor(settings.text_speed);
             break;
         }
     } while(input !=  1);

@@ -1,6 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 #include <string>
+struct Settings;
 
 struct PlayerItem
 {
@@ -63,7 +64,7 @@ public:
 Player (const std::string& name);
 
 void sayHello();
-void printLore();
+void printLore(Settings& settings);
 void printStats();
 };
 #endif
