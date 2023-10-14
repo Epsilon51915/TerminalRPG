@@ -27,5 +27,5 @@ sleepFor.obj: sleepFor.cpp sleepFor.hpp settings.hpp
 enemy.obj:  enemy.cpp enemy.hpp 
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-monsterCatalogue.obj: monsterCatalogue.cpp monsterCatalogue.hpp
+monsterCatalogue.obj: monsterCatalogue.cpp monsterCatalogue.hpp sleepFor.hpp settings.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)

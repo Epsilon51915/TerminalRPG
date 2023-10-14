@@ -14,20 +14,21 @@ struct MonsterCatalogue
     unsigned int base_mgk_def;
     unsigned int base_level;
 
-    void printMonsterCatalogueMenu();
+    int printMonsterCatalogueMenu();
+    int getMonsterCataloguePage(int);
 };
 
 struct Monsters
 {
     public:
 
-    MonsterCatalogue Plains{.area_name = "Plains"};
+    // MonsterCatalogue Plains{.area_name = "Plains"};
 
-    MonsterCatalogue Forest{.area_name = "Forest"};
+    // MonsterCatalogue Forest{.area_name = "Forest"};
 
-    MonsterCatalogue Mountains{.area_name = "Mountains"};
+    // MonsterCatalogue Mountains{.area_name = "Mountains"};
 
-    MonsterCatalogue Castle{.area_name = "Castle"};
+    // MonsterCatalogue Castle{.area_name = "Castle"};
 };
 
 #endif
