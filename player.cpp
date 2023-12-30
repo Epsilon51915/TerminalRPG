@@ -1,76 +1,306 @@
 #include <iostream>
-// sleepFor(1000ms);
+#include <iomanip>
+#include <chrono>
+#include <thread>
 
 #include "player.hpp"
-#include "sleepFor.hpp"
-#include "settings.hpp"
+
 using namespace std;
+using namespace std::chrono_literals;
 
 
-
-Player::Player(const std::string& name) : name(name), level(1), health(5), attack(1), defense(0), speed(1), magic_attack(0), magic_defense(0), exp(0) {}
-
-
-void Player::sayHello()
+// ---------------------------------[Constructor]-----------------------------------
+Player::Player()
 {
-    cout << "Hello " << name << "!" << endl << endl;
-    return;
+    name_ = " ";
+    hp_ = 10;
+    max_hp_ = 10;
+    atk_ = 5;
+    def_ = 5;
+    speed_ = 3;
+    mgk_atk_ = 0;
+    mgk_def_ = 0;
+    lvl_ = 1;
+    exp_ = 0;
+    player_area_ = 1;
 }
 
-void Player::printLore(Settings& settings)
+//----------------------------------[Setters]---------------------------------------
+void Player::setName(string name)
 {
-    cout << "Yeah there's a king in a castle doing shady stuff probably." << endl;
-    sleepFor(settings.text_speed);
-    cout << "Probably planning on raising taxes again." << endl;
-    sleepFor(settings.text_speed);
-    cout << "Or hosting a badmitton tournament." << endl;
-    sleepFor(settings.text_speed);
-    cout << "You should stop him. Maybe. I don't care." << endl << endl;
-    sleepFor(settings.text_speed);
+    name_ = name;
+    if(name_ == "Epsilon")
+    {
+        max_hp_ = 1000;
+        hp_ = 1000;
+        atk_ = 1000;
+        def_ = 1000;
+        speed_ = 1000;
+        mgk_atk_ = 1000;
+        mgk_def_ = 1000;
+        lvl_ = 1000;
+        exp_ = 1000;
+    }
 }
 
-void Player::printStats()
+void Player::setInventory(Inventory inventory)
 {
-    cout << name << "'s Level: " << level << endl;
-    cout << name << "'s HP: " << health << endl;
-    cout << name << "'s ATK: " << attack << endl;
-    cout << name << "'s DEF: " << defense << endl;
-    cout << name << "'s SPD: " << speed << endl;
-    cout << name << "'s MGK ATK: " << magic_attack << endl;
-    cout << name << "'s MGK DEF: " << magic_defense << endl;
-    cout << name << "'s EXP: " << exp << endl;
+    player_inventory = inventory.createInventory();
 }
 
-
-    /*
-        Items:
-        Potions (Lvl 1-5) (Heals by a certain amt.)
-        Defensive Flasks (Lvl 1-3) (Ups true DEF by certain amt.)
-        Offensive Flasks (Lvl 1-3) (Ups true ATK by certain amt.)
-        Pouch of Sand (Throws sand in the enemy's eyes. May cause the enemy to miss an attack.)
-        Armor/Weapons (Boosts certain stats) (LATER, NOT IN FIRST EDITION OF GAME)
-    */
-
-    /*
-        Purity Items: (LATER, NOT IN FIRST EDITION OF GAME)
-        (APPEAR IN OTHER SLOTS, DO NOT TAKE UP INVENTORY SPACE)
-        Soul of the Plains (Boosts speed by 10) [Obtainable by defeating the Plains boss]
-        Heart of the Forest (Boosts both Magic ATK and Magic DEF by 5) [Obtainable by defeating the Forest boss]
-        Will of the Mountain (Boosts ATK by 5 and DEF by 10) [Obtainable by defeats the Mountains boss]
-        Crown of the King (Congratulations!!) [Obtainable by defeating the King]
-    */
-void Inventory::printInventory()
+void Player::setMaxHP(int max_hp)
 {
-    // cout << "[1. " << item_1 << " (" << item_1_quantity << "/10) ]  [2. " << item_2 << " (" << item_2_quantity << "/10) ]" << endl;
-    // cout << "[3. " << item_3 << " (" << item_3_quantity << "/10) ]  [4. " << item_4 << " (" << item_4_quantity << "/10) ]" << endl;
-    // cout << "[5. " << item_5 << " (" << item_5_quantity << "/10) ]  [6. " << item_6 << " (" << item_6_quantity << "/10) ]" << endl;
-    // cout << "[7. " << item_7 << " (" << item_7_quantity << "/10) ]  [8. " << item_8 << " (" << item_8_quantity << "/10) ]" << endl;
-    // cout << "[9. " << item_9 << " (" << item_9_quantity << "/10) ]  [10. " << item_10 << " (" << item_10_quantity << "/10) ]" << endl;
+    max_hp_ = max_hp;  
+}
 
-    cout << "[1. " << potion1.name << " (" << potion1.quantity << "/10) ]  [2. " << potion2.name << " (" << potion2.quantity << "/10) ]" << endl;
-    cout << "[3. " << potion3.name << " (" << potion3.quantity << "/10) ]  [4. " << defense_flask1.name << " (" << defense_flask1.quantity << "/10) ]" << endl;
-    cout << "[5. " << defense_flask2.name << " (" << defense_flask2.quantity << "/10) ]  [6. " << defense_flask3.name << " (" << defense_flask3.quantity << "/10) ]" << endl;
-    cout << "[7. " << offense_flask1.name << " (" << offense_flask1.quantity << "/10) ]  [8. " << offense_flask2.name << " (" << offense_flask2.quantity << "/10) ]" << endl;
-    cout << "[9. " << offense_flask3.name << " (" << offense_flask3.quantity << "/10) ]  [2. " << sand.name << " (" << sand.quantity << "/10) ]" << endl;
+void Player::setHP(int hp)
+{
+    hp_ = hp;
+}
 
+void Player::setATK(int atk)
+{
+    atk_ = atk;
+}
+
+void Player::setDEF(int def)
+{
+    def_ = def;
+}
+
+void Player::setSPD(int speed)
+{
+    speed_ = speed;
+}
+
+void Player::setMGKATK(int mgkatk)
+{
+    mgk_atk_ = mgkatk;
+}
+
+void Player::setMGKDEF(int mgk_def)
+{
+    mgk_def_ = mgk_def;
+}
+
+void Player::setLVL(int lvl)
+{
+    lvl_ = lvl;
+}
+
+void Player::setEXP(int exp)
+{
+    exp_ = exp;
+}
+
+void Player::changePlayerArea()
+{
+    player_area_++;
+}
+
+// ---------------------------------[Master Getter]---------------------------------
+void Player::getStats()
+{
+    cout << getName() << "'s HP: " <<  getHP() << "/" << getMAX_HP() << endl;
+    cout << getName() << "'s ATK: " << getATK() << endl;
+    cout << getName() << "'s DEF: " << getDEF() << endl;
+    cout << getName() << "'s SPD: " << getSPD() << endl;
+    cout << getName() << "'s MGK_ATK: " << getMGK_ATK() << endl;
+    cout << getName() << "'s MGK_DEF: " << getMGK_DEF() << endl;
+    cout << getName() << "'s LVL: " << getLVL() << endl;
+    cout << getName() << "'s EXP: " << getEXP() << endl;
+    cout << getName() << "'s Area: " << getPlayerArea() << endl << endl;
+}
+
+// ---------------------------------[Getters]---------------------------------------
+string Player::getName()
+{
+    return name_;
+}
+
+int Player::getHP()
+{
+    return hp_;
+}
+
+int Player::getMAX_HP()
+{
+    return max_hp_;
+}
+
+int Player::getATK()
+{
+    return atk_;
+}
+
+int Player::getDEF()
+{
+    return def_;
+}
+
+int Player::getSPD()
+{
+    return speed_;
+}
+
+int Player::getMGK_ATK()
+{
+    return mgk_atk_;
+}
+
+int Player::getMGK_DEF()
+{
+    return mgk_def_;
+}
+
+int Player::getLVL()
+{
+    return lvl_;
+}
+
+int Player::getEXP()
+{
+    return exp_;
+}
+
+string Player::getPlayerArea()
+{
+    switch(player_area_)
+    {
+        case 1:
+            return "Plains";
+            break;
+
+        case 2:
+            return "Forest";
+            break;
+
+        case 3:
+            return "Mountains";
+            break;
+
+        case 4:
+            return "Castle";
+            break;
+    }
+    return " ";
+}
+
+int Player::getPlayerAreaInt()
+{
+    return player_area_;
+}
+
+// ---------------------------------[Interfaces]-----------------------------------------------
+void Player::displayInventory()
+{
+    int size = player_inventory.size();
+    for(auto i = 0; i < size; i++)
+    {
+        cout << "[ " << player_inventory[i].getItemName() << " (" << player_inventory[i].getItemQuantity() << "/10) ]" << endl;
+    }
+    cout << endl;
+}
+
+bool Player::checkForLevelUp()
+{
+    // exp = 100 + 50(L - 1)^(L/7)
+    int exp_to_level_up = 100 + ( 50 * pow( (lvl_ - 1), (lvl_ / 6.0) ) );
+    if(exp_ > exp_to_level_up)
+    {
+        return true;
+    }
+    return false;
+}
+
+void Player::levelUp()
+{
+    int exp_to_level_up = 100 + ( 50 * pow( (lvl_ - 1), (lvl_ / 6) ) );
+    int increment;
+    int level_up_selection;
+    lvl_++;
+    setEXP(getEXP() - exp_to_level_up);
+    for(int i = 0; i < 6; i++)
+    {
+        increment = rand() % 4;
+        switch(i)
+        {
+            case 0:
+                max_hp_ += increment;
+                break;
+
+            case 1:
+                atk_ += increment;
+                break;
+
+            case 2: 
+                def_ += increment;
+                break;
+            
+            case 3:
+                speed_ += increment;
+                break;
+
+            case 4:
+                mgk_atk_ += increment;
+                break;
+
+            case 5:
+                mgk_def_ += increment;
+                break;
+        }
+    }
+    cout << "You have leveled up!!" << endl;
+    for(int i = 3; i > 0; i--)
+    {
+        cout << "Max HP: " << max_hp_ << " + 2  ->  " << max_hp_ + 2 << endl;
+        cout << "Attack: " << atk_ << " + 2  ->  " << atk_ + 2 << endl;
+        cout << "Defense: " << def_ << " + 2  ->  " << def_ + 2 << endl;
+        cout << "Speed: " << speed_ << " + 2  ->  " << speed_ + 2 << endl;
+        cout << "Magic Attack: " << mgk_atk_ << " + 2  ->  " << mgk_atk_ + 2 << endl;
+        cout << "Magic Defense: " << mgk_def_ << " + 2  ->  " << mgk_def_ + 2 << endl << endl;
+        do
+        {
+        cout << "You have " << i << " level up point(s) left to spend." << endl;
+        cout << "Select a stat you would like to spend 1 level up point on!" << endl;
+        cin >> level_up_selection;
+        if(level_up_selection < 1 || level_up_selection > 6)
+        {
+            cout << "Maybe I'll just take away points from you instead." << endl << endl;
+            cin.clear();
+            cin.ignore();
+            level_up_selection = 0;
+        }
+        else
+        {
+            switch(level_up_selection)
+            {
+                case 1:
+                    max_hp_ += 2;
+                    break;
+
+                case 2:
+                    atk_ += 2;
+                    break;
+
+                case 3:
+                    def_ += 2;
+                    break;
+
+                case 4:
+                    speed_ += 2;
+                    break;
+
+                case 5:
+                    mgk_atk_ += 2;
+                    break;
+
+                case 6:
+                    mgk_def_ += 2;
+                    break;
+            }
+        }
+        } while(level_up_selection < 1 || level_up_selection > 6);
+    }
+    setHP(max_hp_); // Heal player
 }

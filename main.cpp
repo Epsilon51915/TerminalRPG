@@ -1,78 +1,44 @@
 #include <iostream>
+#include <vector>
+#include <chrono>
 
-#include "intro.hpp"
-#include "player.hpp"
-#include "playerChoiceCatalogue.hpp"
-#include "settings.hpp"
-#include "sleepFor.hpp"
+#include "game.hpp"
 
 using namespace std;
+using namespace std::chrono;
 
-string promptAndGetName()
+int main()
 {
-    cout << "What is your name? ";
-    string name;
-    getline(cin, name);
-    cout << endl;
-    return name;
-}
+    system_clock::time_point previous = high_resolution_clock::now();
+    Inventory temp;
+    Game game;
+    if(!game.getAllEnemies())
+    {
+        cout << "Someone can't program a game right. Or maybe it's just user error." << endl;
+        return 0;
+    }
+    Player user;
+    game.displayIntro();
 
-int main(){
-
-    Settings settings;
-
-    // Plays intro
-    intro();
-
-    sleepFor(settings.text_speed);
-
-    // Shows the user the start screen
-    int input = selectScreen(settings);
-
-    // User quit the game.
-    if (input == 4)
+    // Ends the game if the player chose to.
+    if(game.selectScreen() == 4)
     {
         return 0;
     }
 
-    // Get player name
-    string name = promptAndGetName();
-    Player user(name);
+    user.setName(game.promptAndGetName());
+    user.setInventory(temp);
+    game.setPlayer(user);
+    game.sleepFor();
+    game.displayLore();
 
-    // Dev mode
-    if (name == "Epsilon")
+    system_clock::time_point lap = high_resolution_clock::now();
+    duration<double, micro> seed_clock = lap - previous;
+    game.setSeed(seed_clock.count());
+
+    do
     {
-        user.level = 1000;
-        user.health = 1000;
-        user.attack = 1000;
-        user.defense = 1000;
-        user.speed = 1000;
-        user.magic_attack = 1000;
-        user.magic_defense = 1000;
-        user.exp = 1000;
-    }
-
-    // Say hello to user
-    user.sayHello();
-    sleepFor(settings.text_speed); // settings.text_speed + 500ms to modify
-
-    // Game lore that I totally didn't just write up in 30 seconds.
-    user.printLore(settings);
-    sleepFor(settings.text_speed);
-
-    
-    int player_selection = 0;
-    
-
-    while (player_selection != 1)
-    {
-    // Show the user the out of battle menu, allow the user to make a choice
-    player_selection = menu(settings);
-
-    // Based on the user's choice, display different screens.
-    menuChoice(player_selection, user, settings, input);
-    }
+    } while(game.menu());
 
     return 0;
 }
-
