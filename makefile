@@ -1,7 +1,7 @@
 .PHONY: clean
 
 COMPILE_FLAGS = -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c++20
-LINK_FLAG = 
+LINK_FLAGS = -static-libgcc -static-libstdc++ -static
 
 rpg.exe: main.obj player.obj inventory.obj enemy.obj game.obj
 	$(CXX) -o $@ $^ $(LINK_FLAGS)
@@ -20,3 +20,6 @@ enemy.obj: enemy.cpp enemy.hpp
 
 game.obj: game.cpp game.hpp player.hpp inventory.hpp enemy.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
+
+clean:
+	rm rpg.exe *.obj
