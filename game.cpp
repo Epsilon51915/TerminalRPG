@@ -29,31 +29,32 @@ void Game::sleepFor()
 //----------------------------------[Intro Functions]-------------------------------------------
 void Game::displayIntro()
 {
-    cout << 
-    "        |   |                                                         |   |" << endl <<
-    "        |   |                                                         |   |" << endl <<
-    "        |   |                                                         |   |" << endl <<
-    "       /    |                                                         |    \\ " << endl <<
-    "       |   /                                                           \\    |" << endl <<
-    "       |   |                                                            |   |" << endl <<
-    "      /    |                                                            |    \\ " << endl <<
-    "      |   /                                                              \\    |" << endl <<  
-    "      |   |                                                               |   |" << endl <<
-    "      |   |---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---|   |" << endl <<
-    "      |   |                                                               |   |" << endl <<
-    "     /    | Terminal RPG - A Terminal - Based RPG. If you can believe it. |   |" << endl <<
-    "     |   /                 (Aren't all RPG's terminal?)                   \\   \\" << endl <<
-    "     |   |-----------------------------------------------------------------|   |" << endl <<
-    "     |   |                                                                 |   |" << endl <<
-    "     |   |                                                                 |   |" << endl <<
-    "     |   |                                                                 |   |" << endl <<
-    "    /    |                                                                 |   |" << endl <<
-    "    |   /                                                                   \\   \\ " << endl <<
-    "    |   |                                                                   |   |" << endl <<
-    "    |   |                                                                   |   |" << endl <<
-    "    |   |                                                                   |   |" << endl <<
-    "    |   |                                                                   |   |" << endl <<
-    "    |   |                                                                   |   |" << endl;
+    cout << R"str(
+    |   |                                                         |   |
+    |   |                                                         |   |
+    |   |                                                         |   |
+   /    |                                                         |    \
+   |   /                                                           \    |
+   |   |                                                            |   |
+  /    |                                                            |    \
+  |   /                                                              \    |
+  |   |                                                               |   |
+  |   |---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---[]---|   |
+  |   |                                                               |   |
+ /    | Terminal RPG - A Terminal - Based RPG. If you can believe it. |   |
+ |   /                 (Aren't all RPG's terminal?)                    \   \
+ |   |-----------------------------------------------------------------|   |
+ |   |                                                                 |   |
+ |   |                                                                 |   |
+ |   |                                                                 |   |
+/    |                                                                 |   |
+|   /                                                                   \   \
+|   |                                                                   |   |
+|   |                                                                   |   |
+|   |                                                                   |   |
+|   |                                                                   |   |
+|   |                                                                   |   |
+)str";
     sleepFor();
 }
 
@@ -81,14 +82,14 @@ string Game::promptAndGetName()
 int Game::selectScreen(){
 
     int input;
-    
+
     do
     {
     cout << endl << endl << "Options: " << endl;
     cout << "[1. Start Game]" << "     [2. About]" << endl;
     cout << endl;
     cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
-    cout << endl;   
+    cout << endl;
     cin >> input;
     cin.ignore();
     cout << endl;
