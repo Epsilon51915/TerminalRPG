@@ -33,7 +33,7 @@ $(ARCHIVE_NAME): $(EXECUTABLE_NAME)
 	[[ -f "$(MSYS_GCC_DLL)" ]] || cp "/usr/bin/$(MSYS_GCC_DLL)" ./
 	[[ -f "$(MSYS_STDCPP_DLL)" ]] || cp "/usr/bin/$(MSYS_STDCPP_DLL)" ./
 	[[ -f "$(MSYS_DLL)" ]] || cp "/usr/bin/$(MSYS_DLL)" ./
-	powershell -c "Compress-Archive -Path \"$(EXECUTABLE_NAME)\",\"*.dll\" -DestinationPath \"$(ARCHIVE_NAME)\""
+	powershell -c "Compress-Archive -Update -Path \"$(EXECUTABLE_NAME)\",\"*.dll\" -DestinationPath \"$(ARCHIVE_NAME)\""
 
 clean:
 	rm -f "$(ARCHIVE_NAME)" "$(EXECUTABLE_NAME)" *.obj
