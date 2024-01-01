@@ -9,7 +9,7 @@ using namespace std::chrono;
 
 int main()
 {
-    system_clock::time_point previous = high_resolution_clock::now();
+    auto previous = high_resolution_clock::now();
     Inventory temp;
     Game game;
     if(!game.getAllEnemies())
@@ -32,8 +32,8 @@ int main()
     game.sleepFor();
     game.displayLore();
 
-    system_clock::time_point lap = high_resolution_clock::now();
-    duration<double, micro> seed_clock = lap - previous;
+    auto lap = high_resolution_clock::now();
+    auto seed_clock = lap - previous;
     game.setSeed(seed_clock.count());
 
     do

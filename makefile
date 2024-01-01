@@ -1,6 +1,10 @@
 .PHONY: clean
 
+ifeq ($(OS), Windows_NT)
 EXECUTABLE_NAME = rpg.exe
+else
+EXECUTABLE_NAME = rpg
+endif
 COMPILE_FLAGS = -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c++20
 LINK_FLAGS =
 
@@ -24,16 +28,22 @@ game.obj: game.cpp game.hpp player.hpp inventory.hpp enemy.hpp
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
 ARCHIVE_NAME = TerminalRPG.zip
+dist: $(ARCHIVE_NAME)
+
+ifeq ($(OS), Windows_NT)
 MSYS_GCC_DLL = msys-gcc_s-seh-1.dll
 MSYS_STDCPP_DLL = msys-stdc++-6.dll
 MSYS_DLL = msys-2.0.dll
 
-dist: $(ARCHIVE_NAME)
 $(ARCHIVE_NAME): $(EXECUTABLE_NAME)
 	[[ -f "$(MSYS_GCC_DLL)" ]] || cp "/usr/bin/$(MSYS_GCC_DLL)" ./
 	[[ -f "$(MSYS_STDCPP_DLL)" ]] || cp "/usr/bin/$(MSYS_STDCPP_DLL)" ./
 	[[ -f "$(MSYS_DLL)" ]] || cp "/usr/bin/$(MSYS_DLL)" ./
-	powershell -c "Compress-Archive -Update -Path \"$(EXECUTABLE_NAME)\",\"*.dll\" -DestinationPath \"$(ARCHIVE_NAME)\""
+	powershell -c "Compress-Archive -Update -Path \"$<\",\"*.dll\" -DestinationPath \"$@\""
+else
+$(ARCHIVE_NAME): $(EXECUTABLE_NAME)
+	zip "$@" "$<"
+endif
 
 clean:
 	rm -f "$(ARCHIVE_NAME)" "$(EXECUTABLE_NAME)" *.obj
