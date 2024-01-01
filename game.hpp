@@ -8,6 +8,8 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <regex>
+#include <iterator>
 
 #include "enemy.hpp"
 #include "player.hpp"
@@ -49,6 +51,7 @@ class Game
 
     //----------------------[Game Functions]------------------------------
     bool menu();
+    std::string processString(const std::string&);
     int displayMonsterCatalogueMenu();
     void displayMonsterCataloguePage(int);
     bool travel();

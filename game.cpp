@@ -291,6 +291,13 @@ bool Game::menu()
     return true;
 }
 
+string Game::processString(const string& text)
+{
+    string output{text};
+    output = regex_replace(output, regex{"%name%"}, player_.getName());
+    return output;
+}
+
 int Game::displayMonsterCatalogueMenu()
 {
     int area;
@@ -330,7 +337,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
             break;
@@ -348,7 +355,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
         for(int i = 5; i < 9; i++)
@@ -361,7 +368,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
             break;
@@ -379,7 +386,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
         for(int i = 6; i < 7; i++)
@@ -392,7 +399,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
         for(int i = 9; i < 14; i++)
@@ -405,7 +412,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
             break;
@@ -423,7 +430,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_ATK: " << all_enemies_[i].getEnemyMGKATK() << endl;
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
-            cout << all_enemies_[i].getEnemyDescription() << endl;
+            cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
             cout << "*----*----*----*----*----*----*----*" << endl;
         }
             break;
