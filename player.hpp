@@ -5,18 +5,16 @@
 #include <chrono>
 #include <vector>
 #include <cmath>
+#include <string>
 
 #include "inventory.hpp"
 #include "enemy.hpp"
-
-using namespace std;
-using namespace std::chrono_literals;
 
 class Player
 {
     private:
 // ------------------------[Stats]-------------------------
-    string name_;
+    std::string name_;
     int max_hp_;
     int hp_;
     int atk_;
@@ -26,7 +24,7 @@ class Player
     int mgk_def_;
     int lvl_;
     int exp_;
-    vector<Inventory> player_inventory;
+    std::vector<Inventory> player_inventory;
     int player_area_;
 
     public:
@@ -35,7 +33,7 @@ class Player
     Player();
 
     // -----------------------------------[Setters]-------------------------------------------
-    void setName(string);
+    void setName(std::string);
     void setMaxHP(int);
     void setHP(int);
     void setATK(int);
@@ -49,7 +47,7 @@ class Player
     void changePlayerArea();
 
     // -----------------------------------[Getters]-------------------------------------------
-    string getName();
+    std::string getName();
     int getHP();
     int getMAX_HP();
     int getATK();
@@ -60,7 +58,7 @@ class Player
     int getLVL();
     int getEXP();
     void getStats();
-    string getPlayerArea();
+    std::string getPlayerArea();
     int getPlayerAreaInt();
 
     // -------------------------------[Other Interfaces]----------------------------------

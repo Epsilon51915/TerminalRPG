@@ -1,5 +1,7 @@
 #include "game.hpp"
 
+using namespace std;
+
 //----------------------------------[Constructor]-----------------------------------------------
 Game::Game()
 {
