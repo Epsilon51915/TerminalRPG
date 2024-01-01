@@ -4,24 +4,22 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Inventory
 {
     private:
-       string name_;
+       std::string name_;
        int quantity_; 
 
     public:
 //-------------------------[Constructors]--------------------------
         Inventory();
-        Inventory(string);
+        Inventory(std::string);
 
 //-------------------------[Interfaces]----------------------------
-        vector<Inventory> createInventory();
+        std::vector<Inventory> createInventory();
 
 // ------------------------[Getters]-------------------------------
-        string getItemName();
+        std::string getItemName();
         int getItemQuantity();
 
 };

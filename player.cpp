@@ -6,8 +6,6 @@
 #include "player.hpp"
 
 using namespace std;
-using namespace std::chrono_literals;
-
 
 // ---------------------------------[Constructor]-----------------------------------
 Player::Player()

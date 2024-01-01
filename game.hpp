@@ -6,12 +6,15 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <string>
+#include <regex>
+#include <iterator>
 
 #include "enemy.hpp"
 #include "player.hpp"
 #include "inventory.hpp"
 
-using namespace std;
 using namespace std::chrono_literals;
 
 class Game
@@ -23,8 +26,8 @@ class Game
     int battle_exp_;
     // bool game_over = false;
     // bool player_dead = false;
-    vector<Enemy> all_enemies_;
-    chrono::duration <double, milli> text_speed_ = 2000ms;
+    std::vector<Enemy> all_enemies_;
+    std::chrono::duration <double, std::milli> text_speed_ = 2000ms;
 
     public:
     //----------------------[Constructor]----------------------------------
@@ -34,13 +37,13 @@ class Game
     void setPlayer(Player);
 
     //----------------------[Sleep For + Related Functions]---------------
-    chrono::duration <double, milli> getTextSpeed();
+    std::chrono::duration <double, std::milli> getTextSpeed();
     void sleepFor();
 
     //----------------------[Intro Functions]-----------------------------
     void displayIntro();
     void displayLore();
-    string promptAndGetName();
+    std::string promptAndGetName();
     int selectScreen();
     bool getAllEnemies();
     void setSeed(int);
@@ -48,6 +51,7 @@ class Game
 
     //----------------------[Game Functions]------------------------------
     bool menu();
+    std::string processString(const std::string&);
     int displayMonsterCatalogueMenu();
     void displayMonsterCataloguePage(int);
     bool travel();
