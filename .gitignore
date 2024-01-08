@@ -2,5 +2,8 @@
 **/*.exe
 **/*.zip
 **/*.dll
+x86/
+x64/
+.vs/
 
 .vscode/
