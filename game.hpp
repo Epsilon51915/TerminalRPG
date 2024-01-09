@@ -36,6 +36,8 @@ class Game
     //----------------------[Setters]-------------------------------------
     void setPlayer(Player);
 
+    Player getPlayer();
+
     //----------------------[Sleep For + Related Functions]---------------
     std::chrono::duration <double, std::milli> getTextSpeed();
     void sleepFor();

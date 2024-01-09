@@ -17,6 +17,11 @@ void Game::setPlayer(Player p)
     player_ = p;
 }
 
+Player Game::getPlayer()
+{
+    return player_;
+}
+
 //----------------------------------[Sleep For + Related Functions]-----------------------------
 chrono::duration <double, milli> Game::getTextSpeed()
 {   
@@ -76,7 +81,7 @@ string Game::promptAndGetName()
 {
     string name;
     cout << "What is your name?" << endl;
-    cin >> name;
+    getline(cin, name);
     cout << endl;
     return name;
 }
@@ -84,6 +89,7 @@ string Game::promptAndGetName()
 int Game::selectScreen(){
 
     int input;
+    string temp;
 
     do
     {
@@ -92,8 +98,8 @@ int Game::selectScreen(){
     cout << endl;
     cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
     cout << endl;
-    cin >> input;
-    cin.ignore();
+    getline(cin, temp);
+    input = stoi(temp); // FIX THIS <-----
     cout << endl;
     switch (input)
         {
@@ -142,9 +148,6 @@ int Game::selectScreen(){
             sleepFor();
             cout << "You've got this!" << endl;
             sleepFor();
-            cin.clear();
-            cin.ignore();
-            input = 0;
             break;
         }
     } while(input !=  1);
@@ -233,7 +236,12 @@ bool Game::menu()
         if(!travel())
         {
             // Call DEATH fucntion
+            deathGameOver();
             return false;
+        }
+        if (player_.getPlayerAreaInt() == 5)
+        {
+            return true;
         }
         // Check if player area is post-castle. If so, end the game.
         break;
@@ -470,6 +478,8 @@ bool Game::travel()
         // Get Boss Enemy
         cout << "Congratulations, you have completed the game!" << endl;
         sleepFor();
+        player_.changePlayerArea();
+        // Call game over - WIN - function
     }
     else
     {
@@ -562,7 +572,12 @@ void Game::deathGameOver()
 {
     sleepFor();
     sleepFor();
-
+    cout << "You have died!" << endl;
+    sleepFor();
+    cout << "Final stats: " << endl;
+    sleepFor();
+    player_.getStats();
+    sleepFor();
 }
 
 //-----------------------------------[Combat Functions]-----------------------------------------
