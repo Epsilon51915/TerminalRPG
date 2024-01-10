@@ -299,7 +299,6 @@ string Game::processString(const string& text)
 
 int Game::displayMonsterCatalogueMenu()
 {
-    int area;
     do
     {
     cout << "[Area 1: Plains]" << endl;
@@ -307,16 +306,18 @@ int Game::displayMonsterCatalogueMenu()
     cout << "[Area 3: Mountain]" << endl;
     cout << "[Area 4: Castle]" << endl;
     cout << "Select an area: ";
-    cin >> area;
-    if(area < 1 || area > 4)
+    string area;
+    getline(cin, area);
+    if (area == "1" || area == "2" || area == "3" || area == "4")
+    {
+        cout << endl;
+        return stoi(area);
+    }
+    else
     {
         cout << "Nope." << endl;
-        cin.clear();
-        cin.ignore();
     }
-    } while (area < 1 || area > 4);
-    cout << endl;
-    return area;
+    } while (true);
 }
 
 void Game::displayMonsterCataloguePage(int area)
