@@ -1426,25 +1426,27 @@ bool Game::combat()
 bool Game::playerTurn()
 {
     int damage = 0;
-    int choice = 0;
+    string choice;
+    int int_choice;
     // Player attacks. Later add implementation for item usage.
     do
     {
     cout << "[1. Physical Attack]   [2. Magical Attack]" << endl;
     cout << "[3. Items]             [4. Run Away]" << endl;
-    cin >> choice;
+    getline(cin, choice);
     sleepFor();
-    if(choice != 1 && choice != 2 && choice != 3 && choice != 4)
+    if(choice != "1" && choice != "2" && choice != "3" && choice != "4")
     {
         cout << "I should just forfeit your turn. That's what you deserve for being a moron." << endl;
         sleepFor();
         cin.clear();
         cin.ignore();
-        choice = 0;
+        choice = "";
     }
     else
     {
-        switch(choice)
+        int_choice = stoi(choice);
+        switch(int_choice)
         {
             case 1:
                 damage = player_.getATK() - (enemy_.getEnemyDEF() / 2);
@@ -1483,7 +1485,7 @@ bool Game::playerTurn()
                 break;
         }
     }
-    } while(choice < 1 || choice > 4);
+    } while(int_choice < 1 || int_choice > 4);
     sleepFor();
     return true;
 }
@@ -1572,24 +1574,23 @@ bool Game::runAway()
 //-----------------------------------[Settings]-------------------------------------------------
 int Game::showSettings()
 {
-    int choice;
+    string choice;
+    int int_choice = 0;
     cout << "Text Speed: " << fixed << setprecision(1) <<  text_speed_.count() / 1000 << " seconds." << endl;
     sleepFor();
     do
     {
         cout << "[1. Edit Settings]" << endl;
         cout << "[2. Close]" << endl;
-        cin >> choice;
-
-        if(choice != 1 && choice != 2)
+        getline(cin, choice);
+        if(choice != "1" && choice != "2")
         {
             cout << "Nope. Try again." << endl;
             sleepFor();
         }
-
-    } while (choice != 1 && choice != 2);
-     
-    return choice;
+    } while (choice != "1" && choice != "2");
+    int_choice = stoi(choice);
+    return int_choice;
 }
 
 void Game::changeSettings(int choice)
