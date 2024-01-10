@@ -1598,33 +1598,39 @@ void Game::changeSettings(int choice)
     {
         do
         {
-        cout << endl;
-        cout << "[1. .5s]" << endl;
-        cout << "[2. 1s]" << endl;
-        cout << "[3. 1.5s]" << endl;
-        cout << "[4. 2s]" << endl;
-        cout << "[5. 3s]" << endl;
+        cout << endl <<"Changing text speed:" << endl;
+        cout << "Select an option to change your text speed." << endl;
+        cout << "[1. 0s]" << endl;
+        cout << "[2. .5s]" << endl;
+        cout << "[3. 1s]" << endl;
+        cout << "[4. 1.5s]" << endl;
+        cout << "[5. 2s]" << endl;
+        cout << "[6. 3s]" << endl;
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-            text_speed_ = 500ms;
+            text_speed_ = 0ms;
             break;
 
         case 2:
-            text_speed_ = 1000ms;
+            text_speed_ = 500ms;
             break;
 
         case 3:
-            text_speed_ = 1500ms;
+            text_speed_ = 1000ms;
             break;
 
         case 4:
-            text_speed_ = 2000ms;
+            text_speed_ = 1500ms;
             break;
 
         case 5:
+            text_speed_ = 2000ms;
+            break;
+
+        case 6:
             text_speed_ = 3000ms;
             break;
 
@@ -1633,7 +1639,7 @@ void Game::changeSettings(int choice)
             sleepFor();
             break;
         }
-        } while (choice < 1 || choice > 5);
+        } while (choice < 1 || choice > 6);
 
         sleepFor();
         cout << "Text speed changed." << endl;
