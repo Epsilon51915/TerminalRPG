@@ -560,6 +560,16 @@ int Game::getRandomNumber()
     return rand();
 }
 
+int Game::getRandomNumber(int maximum)
+{
+    return rand() % (maximum + 1);
+}
+
+int Game::getRandomNumber(int minimum, int maximum)
+{
+    return (rand() % (maximum - minimum + 1)) + minimum;
+}
+
 void Game::deathGameOver()
 {
     sleepFor();
@@ -575,7 +585,7 @@ void Game::deathGameOver()
 //-----------------------------------[Combat Functions]-----------------------------------------
 void Game::getPlainsEnemy()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 2)
     {
         if(random > 95) // 96 - 100 -> 5%
@@ -626,7 +636,7 @@ void Game::getPlainsEnemy()
 
 void Game::getForestEnemy()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     // 1, 2, 5, 6, 7, 8
     if(player_.getLVL() <= 3)
     {
@@ -687,7 +697,7 @@ void Game::getForestEnemy()
 void Game::getMountainEnemy()
 {
     // 2, 6, 9, 10, 11, 12, 13
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 5)
     {
         if(random < 15) // 0 - 14 -> 15% (L. rock)
@@ -755,7 +765,7 @@ void Game::getMountainEnemy()
 void Game::getCastleEnemy()
 {
     // 14 - 20 (-1 is weird college student, ID'd at 14)
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 7)
     {
         if(random < 22 && random > 0) // 1 - 21 -> 21% 
@@ -825,7 +835,7 @@ void Game::randomiseEnemyStats()
     int random;
     for(int i = 0; i < 6; i++)
     {
-        random = getRandomNumber() % 100;
+        random = getRandomNumber(99);
         switch(player_.getPlayerAreaInt())
         {
             case 1:
@@ -1354,7 +1364,7 @@ bool Game::combat()
 
     do
     {
-        random = getRandomNumber() % 100;
+        random = getRandomNumber(99);
         if(enemy_.getEnemySPD() < player_.getSPD() || (enemy_.getEnemySPD() == player_.getSPD() && random < 50)) // Player goes first
         {
             if(playerTurn())
@@ -1485,7 +1495,7 @@ bool Game::playerTurn()
 void Game::enemyTurn()
 {
     int damage;
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     // Enemy attacks. If enemy is a rock/college student, do unique battle.
     if(enemy_.getEnemyName() == "Small Rock" || enemy_.getEnemyName() == "Medium Rock" || enemy_.getEnemyName() == "Large Rock")
     {
@@ -1525,7 +1535,7 @@ void Game::enemyTurn()
 
 bool Game::runAway()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     int runAwayFactor = -(player_.getSPD() - enemy_.getEnemySPD());
     if(player_.getSPD() > enemy_.getEnemySPD())
     {

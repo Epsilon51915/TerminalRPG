@@ -54,6 +54,8 @@ class Game
     bool getAllEnemies();
     void setSeed(int);
     int getRandomNumber();
+    int getRandomNumber(int);
+    int getRandomNumber(int, int);
 
     //----------------------[Game Functions]------------------------------
     bool menu();
