@@ -27,7 +27,11 @@ class Game
     // bool game_over = false;
     // bool player_dead = false;
     std::vector<Enemy> all_enemies_;
+#if defined(_DEBUG) or defined(DEBUG)
+    std::chrono::duration <double, std::milli> text_speed_ = 0ms;
+#else
     std::chrono::duration <double, std::milli> text_speed_ = 2000ms;
+#endif // DEBUG
 
     public:
     //----------------------[Constructor]----------------------------------

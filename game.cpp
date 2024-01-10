@@ -6,7 +6,6 @@ using namespace std;
 Game::Game()
 {
     encounters_ = 0;
-    text_speed_ = 2000ms;
     Player player;
     Enemy enemy;
 }
