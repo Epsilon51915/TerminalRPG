@@ -219,20 +219,18 @@ void Game::setSeed(int seed)
 //-----------------------------------[Game Functions]-------------------------------------------
 bool Game::menu()
 {
-    cout << "[1. Travel]            [2. Check Stats]" <<  endl;
+    cout << "[1. Travel]            [2. Check Stats]" << endl;
     cout << "[3. Check Items]       {4. Monster Catalogue}" << endl;
     cout << "[5. Settings]          [6. Exit Game]" << endl;
     cout << "Select an Option: ";
-    int player_selection;
-    int choice;
-    cin >> player_selection;
+    string player_selection;
+    getline(cin, player_selection);
     cout << endl;
-    switch (player_selection)
+    if (player_selection == "1")
     {
-    case 1:
         cout << "Beginning travels..." << endl;
         sleepFor();
-        if(!travel())
+        if (!travel())
         {
             // Call DEATH fucntion
             deathGameOver();
@@ -242,42 +240,40 @@ bool Game::menu()
         {
             return true;
         }
-        // Check if player area is post-castle. If so, end the game.
-        break;
-
-    case 2:
+    }
+    else if (player_selection == "2")
+    {
         cout << "Checking stats..." << endl;
         sleepFor();
         player_.getStats();
         sleepFor();
-        break;
-
-    case 3:
+    }
+    else if (player_selection == "3")
+    {
         cout << "Opening inventory..." << endl;
         sleepFor();
         player_.displayInventory();
         sleepFor();
-        break;
-
-    case 4:
+    }
+    else if (player_selection == "4")
+    {
         cout << "Dusting off the Monster Catalogue..." << endl;
         sleepFor();
         displayMonsterCataloguePage(displayMonsterCatalogueMenu());
-        break;
-
-    case 5:
+    }
+    else if (player_selection == "5")
+    {
         cout << "Opening Settings..." << endl;
         sleepFor();
-        choice = showSettings();
+        int choice = showSettings();
         sleepFor();
         if (choice == 1)
         {
             changeSettings(choice);
         }
-        else{};
-        break;
-
-    case 6:
+    }
+    else if (player_selection == "6")
+    {
         cout << "Exiting game..." << endl;
         text_speed_ = 500ms;
         sleepFor();
@@ -287,13 +283,9 @@ bool Game::menu()
         sleepFor();
         cout << ". . ." << endl;
         return false;
-        break;
-
-    default:
+    }
+    else {
         cout << "Error Message. Don't be a moron." << endl;
-        cin.clear();
-        cin.ignore();
-        break;
     }
     return true;
 }
