@@ -81,5 +81,4 @@ class Game
     int showSettings();
     void changeSettings(int);
 };
-
 #endif
