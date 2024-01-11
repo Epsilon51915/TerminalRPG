@@ -7,30 +7,59 @@ EXECUTABLE_NAME = rpg.exe
 else
 EXECUTABLE_NAME = rpg
 endif
-COMPILE_FLAGS = -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c++20
-LINK_FLAGS =
+WARNINGS = -Wall -Wextra -Werror -Wpedantic -pedantic-errors
+CXX_VERSION = -std=c++20
+OPTIMIZE =
+DEBUG =
 EXE_DIR = bin
 OBJ_DIR = obj
+SRC_DIR = .
+INCL_DIR = .
 
+release: OPTIMIZE = -O3
+release: DEBUG = -DNDEBUG
 release: $(EXE_DIR)/$(EXECUTABLE_NAME)
-$(EXE_DIR)/$(EXECUTABLE_NAME): $(OBJ_DIR)/main.obj $(OBJ_DIR)/player.obj $(OBJ_DIR)/inventory.obj $(OBJ_DIR)/enemy.obj $(OBJ_DIR)/game.obj
+
+debug: OPTIMIZE = -Og -g
+debug: DEBUG = -DDEBUG -D_DEBUG
+debug: $(EXE_DIR)/$(EXECUTABLE_NAME)
+
+COMPILE_FLAGS = $(CXX_VERSION) $(WARNINGS) $(OPTIMIZE) $(DEBUG)
+LINK_FLAGS =
+
+MAIN_CPP = $(SRC_DIR)/main.cpp
+MAIN_OBJ = $(OBJ_DIR)/main.o
+PLAYER_CPP = $(SRC_DIR)/player.cpp
+PLAYER_HPP = $(INCL_DIR)/player.hpp
+PLAYER_OBJ = $(OBJ_DIR)/player.o
+INVENTORY_CPP = $(SRC_DIR)/inventory.cpp
+INVENTORY_HPP = $(INCL_DIR)/inventory.hpp
+INVENTORY_OBJ = $(OBJ_DIR)/inventory.o
+ENEMY_CPP = $(SRC_DIR)/enemy.cpp
+ENEMY_HPP = $(INCL_DIR)/enemy.hpp
+ENEMY_OBJ = $(OBJ_DIR)/enemy.o
+GAME_CPP = $(SRC_DIR)/game.cpp
+GAME_HPP = $(INCL_DIR)/game.hpp
+GAME_OBJ = $(OBJ_DIR)/game.o
+
+$(EXE_DIR)/$(EXECUTABLE_NAME): $(MAIN_OBJ) $(PLAYER_OBJ) $(INVENTORY_OBJ) $(ENEMY_OBJ) $(GAME_OBJ)
 	mkdir -p $(EXE_DIR)
 	$(CXX) -o $@ $^ $(LINK_FLAGS)
 
-$(OBJ_DIR)/main.obj: main.cpp game.hpp
+$(MAIN_OBJ): $(MAIN_CPP) $(GAME_HPP)
 	mkdir -p $(OBJ_DIR)
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-$(OBJ_DIR)/player.obj: player.cpp player.hpp inventory.hpp enemy.hpp
+$(PLAYER_OBJ): $(PLAYER_CPP) $(PLAYER_HPP) $(INVENTORY_HPP) $(ENEMY_HPP)
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-$(OBJ_DIR)/inventory.obj: inventory.cpp inventory.hpp
+$(INVENTORY_OBJ): $(INVENTORY_CPP) $(INVENTORY_HPP)
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-$(OBJ_DIR)/enemy.obj: enemy.cpp enemy.hpp
+$(ENEMY_OBJ): $(ENEMY_CPP) $(ENEMY_HPP)
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
-$(OBJ_DIR)/game.obj: game.cpp game.hpp player.hpp inventory.hpp enemy.hpp
+$(GAME_OBJ): $(GAME_CPP) $(GAME_HPP) $(PLAYER_HPP) $(INVENTORY_HPP) $(ENEMY_HPP)
 	$(CXX) -c -o $@ $< $(COMPILE_FLAGS)
 
 # We use MSVC for Windows builds now, but I'll
@@ -49,4 +78,4 @@ $(OBJ_DIR)/game.obj: game.cpp game.hpp player.hpp inventory.hpp enemy.hpp
 #	powershell -c "Compress-Archive -Update -Path \"$(EXECUTABLE_NAME)\",\"*.dll\" -DestinationPath \"$(ARCHIVE_NAME)\""
 
 clean:
-	rm -f $(EXE_DIR) $(OBJ_DIR)
+	rm -rf $(EXE_DIR) $(OBJ_DIR)
