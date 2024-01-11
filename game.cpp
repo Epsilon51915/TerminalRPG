@@ -1441,9 +1441,6 @@ bool Game::playerTurn()
     {
         cout << "I should just forfeit your turn. That's what you deserve for being a moron." << endl;
         sleepFor();
-        cin.clear();
-        cin.ignore();
-        choice = "";
     }
     else
     {
@@ -1458,6 +1455,8 @@ bool Game::playerTurn()
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
                 cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 2:
@@ -1468,6 +1467,8 @@ bool Game::playerTurn()
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
                 cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 3:
@@ -1476,6 +1477,8 @@ bool Game::playerTurn()
                 cout << "And because of that, you DID kinda just lose your turn. Sorry." << endl;
                 sleepFor();
                 cout << "Good Luck!!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 4:
@@ -1487,9 +1490,7 @@ bool Game::playerTurn()
                 break;
         }
     }
-    } while(int_choice < 1 || int_choice > 4);
-    sleepFor();
-    return true;
+    } while(true);
 }
 
 void Game::enemyTurn()
