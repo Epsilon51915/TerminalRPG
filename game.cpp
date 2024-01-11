@@ -6,7 +6,6 @@ using namespace std;
 Game::Game()
 {
     encounters_ = 0;
-    text_speed_ = 2000ms;
     Player player;
     Enemy enemy;
 }
@@ -15,6 +14,11 @@ Game::Game()
 void Game::setPlayer(Player p)
 {
     player_ = p;
+}
+
+Player Game::getPlayer()
+{
+    return player_;
 }
 
 //----------------------------------[Sleep For + Related Functions]-----------------------------
@@ -76,7 +80,7 @@ string Game::promptAndGetName()
 {
     string name;
     cout << "What is your name?" << endl;
-    cin >> name;
+    getline(cin, name);
     cout << endl;
     return name;
 }
@@ -84,6 +88,7 @@ string Game::promptAndGetName()
 int Game::selectScreen(){
 
     int input;
+    string temp;
 
     do
     {
@@ -92,8 +97,8 @@ int Game::selectScreen(){
     cout << endl;
     cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
     cout << endl;
-    cin >> input;
-    cin.ignore();
+    getline(cin, temp);
+    input = stoi(temp); // FIX THIS <-----
     cout << endl;
     switch (input)
         {
@@ -113,14 +118,16 @@ int Game::selectScreen(){
             sleepFor();
             break;
 
-        case 3:
+        case 3: {
+            chrono::duration <double, std::milli> new_text_speed = text_speed_;
             text_speed_ = 750ms;
             cout << "My Patreon is" << endl;
             sleepFor();
             cout << "up your ass!" << endl;
             sleepFor();
-            text_speed_ = 2000ms;
+            text_speed_ = new_text_speed;
             break;
+        }
 
         case 4:
             text_speed_ = 500ms;
@@ -131,8 +138,7 @@ int Game::selectScreen(){
             cout << ". . ." << endl;
             sleepFor();
             return input;
-            break;
-        
+
         default:
             cout << "It seems like you're not good with numbers!" << endl;
             sleepFor();
@@ -142,9 +148,6 @@ int Game::selectScreen(){
             sleepFor();
             cout << "You've got this!" << endl;
             sleepFor();
-            cin.clear();
-            cin.ignore();
-            input = 0;
             break;
         }
     } while(input !=  1);
@@ -217,60 +220,61 @@ void Game::setSeed(int seed)
 //-----------------------------------[Game Functions]-------------------------------------------
 bool Game::menu()
 {
-    cout << "[1. Travel]            [2. Check Stats]" <<  endl;
+    cout << "[1. Travel]            [2. Check Stats]" << endl;
     cout << "[3. Check Items]       {4. Monster Catalogue}" << endl;
     cout << "[5. Settings]          [6. Exit Game]" << endl;
     cout << "Select an Option: ";
-    int player_selection;
-    int choice;
-    cin >> player_selection;
+    string player_selection;
+    getline(cin, player_selection);
     cout << endl;
-    switch (player_selection)
+    if (player_selection == "1")
     {
-    case 1:
         cout << "Beginning travels..." << endl;
         sleepFor();
-        if(!travel())
+        if (!travel())
         {
             // Call DEATH fucntion
+            deathGameOver();
             return false;
         }
-        // Check if player area is post-castle. If so, end the game.
-        break;
-
-    case 2:
+        if (player_.getPlayerAreaInt() == 5)
+        {
+            return true;
+        }
+    }
+    else if (player_selection == "2")
+    {
         cout << "Checking stats..." << endl;
         sleepFor();
         player_.getStats();
         sleepFor();
-        break;
-
-    case 3:
+    }
+    else if (player_selection == "3")
+    {
         cout << "Opening inventory..." << endl;
         sleepFor();
         player_.displayInventory();
         sleepFor();
-        break;
-
-    case 4:
+    }
+    else if (player_selection == "4")
+    {
         cout << "Dusting off the Monster Catalogue..." << endl;
         sleepFor();
         displayMonsterCataloguePage(displayMonsterCatalogueMenu());
-        break;
-
-    case 5:
+    }
+    else if (player_selection == "5")
+    {
         cout << "Opening Settings..." << endl;
         sleepFor();
-        choice = showSettings();
+        int choice = showSettings();
         sleepFor();
         if (choice == 1)
         {
             changeSettings(choice);
         }
-        else{};
-        break;
-
-    case 6:
+    }
+    else if (player_selection == "6")
+    {
         cout << "Exiting game..." << endl;
         text_speed_ = 500ms;
         sleepFor();
@@ -280,13 +284,9 @@ bool Game::menu()
         sleepFor();
         cout << ". . ." << endl;
         return false;
-        break;
-
-    default:
+    }
+    else {
         cout << "Error Message. Don't be a moron." << endl;
-        cin.clear();
-        cin.ignore();
-        break;
     }
     return true;
 }
@@ -300,7 +300,6 @@ string Game::processString(const string& text)
 
 int Game::displayMonsterCatalogueMenu()
 {
-    int area;
     do
     {
     cout << "[Area 1: Plains]" << endl;
@@ -308,16 +307,18 @@ int Game::displayMonsterCatalogueMenu()
     cout << "[Area 3: Mountain]" << endl;
     cout << "[Area 4: Castle]" << endl;
     cout << "Select an area: ";
-    cin >> area;
-    if(area < 1 || area > 4)
+    string area;
+    getline(cin, area);
+    if (area == "1" || area == "2" || area == "3" || area == "4")
+    {
+        cout << endl;
+        return stoi(area);
+    }
+    else
     {
         cout << "Nope." << endl;
-        cin.clear();
-        cin.ignore();
     }
-    } while (area < 1 || area > 4);
-    cout << endl;
-    return area;
+    } while (true);
 }
 
 void Game::displayMonsterCataloguePage(int area)
@@ -470,6 +471,8 @@ bool Game::travel()
         // Get Boss Enemy
         cout << "Congratulations, you have completed the game!" << endl;
         sleepFor();
+        player_.changePlayerArea();
+        // Call game over - WIN - function
     }
     else
     {
@@ -558,17 +561,32 @@ int Game::getRandomNumber()
     return rand();
 }
 
+int Game::getRandomNumber(int maximum)
+{
+    return rand() % (maximum + 1);
+}
+
+int Game::getRandomNumber(int minimum, int maximum)
+{
+    return (rand() % (maximum - minimum + 1)) + minimum;
+}
+
 void Game::deathGameOver()
 {
     sleepFor();
     sleepFor();
-
+    cout << "You have died!" << endl;
+    sleepFor();
+    cout << "Final stats: " << endl;
+    sleepFor();
+    player_.getStats();
+    sleepFor();
 }
 
 //-----------------------------------[Combat Functions]-----------------------------------------
 void Game::getPlainsEnemy()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 2)
     {
         if(random > 95) // 96 - 100 -> 5%
@@ -619,7 +637,7 @@ void Game::getPlainsEnemy()
 
 void Game::getForestEnemy()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     // 1, 2, 5, 6, 7, 8
     if(player_.getLVL() <= 3)
     {
@@ -680,7 +698,7 @@ void Game::getForestEnemy()
 void Game::getMountainEnemy()
 {
     // 2, 6, 9, 10, 11, 12, 13
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 5)
     {
         if(random < 15) // 0 - 14 -> 15% (L. rock)
@@ -748,7 +766,7 @@ void Game::getMountainEnemy()
 void Game::getCastleEnemy()
 {
     // 14 - 20 (-1 is weird college student, ID'd at 14)
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     if(player_.getLVL() <= 7)
     {
         if(random < 22 && random > 0) // 1 - 21 -> 21% 
@@ -818,7 +836,7 @@ void Game::randomiseEnemyStats()
     int random;
     for(int i = 0; i < 6; i++)
     {
-        random = getRandomNumber() % 100;
+        random = getRandomNumber(99);
         switch(player_.getPlayerAreaInt())
         {
             case 1:
@@ -1347,7 +1365,7 @@ bool Game::combat()
 
     do
     {
-        random = getRandomNumber() % 100;
+        random = getRandomNumber(99);
         if(enemy_.getEnemySPD() < player_.getSPD() || (enemy_.getEnemySPD() == player_.getSPD() && random < 50)) // Player goes first
         {
             if(playerTurn())
@@ -1411,25 +1429,24 @@ bool Game::combat()
 bool Game::playerTurn()
 {
     int damage = 0;
-    int choice = 0;
+    string choice;
+    int int_choice;
     // Player attacks. Later add implementation for item usage.
     do
     {
     cout << "[1. Physical Attack]   [2. Magical Attack]" << endl;
     cout << "[3. Items]             [4. Run Away]" << endl;
-    cin >> choice;
+    getline(cin, choice);
     sleepFor();
-    if(choice != 1 && choice != 2 && choice != 3 && choice != 4)
+    if(choice != "1" && choice != "2" && choice != "3" && choice != "4")
     {
         cout << "I should just forfeit your turn. That's what you deserve for being a moron." << endl;
         sleepFor();
-        cin.clear();
-        cin.ignore();
-        choice = 0;
     }
     else
     {
-        switch(choice)
+        int_choice = stoi(choice);
+        switch(int_choice)
         {
             case 1:
                 damage = player_.getATK() - (enemy_.getEnemyDEF() / 2);
@@ -1439,6 +1456,8 @@ bool Game::playerTurn()
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
                 cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 2:
@@ -1449,6 +1468,8 @@ bool Game::playerTurn()
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
                 cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 3:
@@ -1457,6 +1478,8 @@ bool Game::playerTurn()
                 cout << "And because of that, you DID kinda just lose your turn. Sorry." << endl;
                 sleepFor();
                 cout << "Good Luck!!!" << endl;
+                sleepFor();
+                return true;
                 break;
 
             case 4:
@@ -1468,15 +1491,13 @@ bool Game::playerTurn()
                 break;
         }
     }
-    } while(choice < 1 || choice > 4);
-    sleepFor();
-    return true;
+    } while(true);
 }
 
 void Game::enemyTurn()
 {
     int damage;
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     // Enemy attacks. If enemy is a rock/college student, do unique battle.
     if(enemy_.getEnemyName() == "Small Rock" || enemy_.getEnemyName() == "Medium Rock" || enemy_.getEnemyName() == "Large Rock")
     {
@@ -1516,7 +1537,7 @@ void Game::enemyTurn()
 
 bool Game::runAway()
 {
-    int random = getRandomNumber() % 100;
+    int random = getRandomNumber(99);
     int runAwayFactor = -(player_.getSPD() - enemy_.getEnemySPD());
     if(player_.getSPD() > enemy_.getEnemySPD())
     {
@@ -1557,72 +1578,80 @@ bool Game::runAway()
 //-----------------------------------[Settings]-------------------------------------------------
 int Game::showSettings()
 {
-    int choice;
+    string choice;
+    int int_choice = 0;
     cout << "Text Speed: " << fixed << setprecision(1) <<  text_speed_.count() / 1000 << " seconds." << endl;
     sleepFor();
     do
     {
         cout << "[1. Edit Settings]" << endl;
         cout << "[2. Close]" << endl;
-        cin >> choice;
-
-        if(choice != 1 && choice != 2)
+        getline(cin, choice);
+        if(choice != "1" && choice != "2")
         {
             cout << "Nope. Try again." << endl;
             sleepFor();
         }
-
-    } while (choice != 1 && choice != 2);
-     
-    return choice;
+    } while (choice != "1" && choice != "2");
+    int_choice = stoi(choice);
+    return int_choice;
 }
 
-void Game::changeSettings(int choice)
+void Game::changeSettings(int input)
 {
-    if(choice == 1)
+    if(input == 1)
     {
+        string choice;
+        cout << endl << "Changing text speed:" << endl;
         do
         {
-        cout << endl;
-        cout << "[1. .5s]" << endl;
-        cout << "[2. 1s]" << endl;
-        cout << "[3. 1.5s]" << endl;
-        cout << "[4. 2s]" << endl;
-        cout << "[5. 3s]" << endl;
-        cin >> choice;
-
-        switch (choice)
+        cout << "Select an option to change your text speed." << endl;
+        cout << "[1. 0s]" << endl;
+        cout << "[2. .5s]" << endl;
+        cout << "[3. 1s]" << endl;
+        cout << "[4. 1.5s]" << endl;
+        cout << "[5. 2s]" << endl;
+        cout << "[6. 3s]" << endl;
+        getline(cin, choice);
+        if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6")
         {
-        case 1:
-            text_speed_ = 500ms;
-            break;
+            int int_choice = stoi(choice);
+            switch (int_choice)
+            {
+            case 1:
+                text_speed_ = 0ms;
+                break;
 
-        case 2:
-            text_speed_ = 1000ms;
-            break;
+            case 2:
+                text_speed_ = 500ms;
+                break;
 
-        case 3:
-            text_speed_ = 1500ms;
-            break;
+            case 3:
+                text_speed_ = 1000ms;
+                break;
 
-        case 4:
-            text_speed_ = 2000ms;
-            break;
+            case 4:
+                text_speed_ = 1500ms;
+                break;
 
-        case 5:
-            text_speed_ = 3000ms;
-            break;
+            case 5:
+                text_speed_ = 2000ms;
+                break;
 
-        default:
-            cout << "Man you should really go to a math class. Or kindergarten. That's where you learn numbers." << endl;
-            sleepFor();
-            break;
-        }
-        } while (choice < 1 || choice > 5);
-
+            case 6:
+                text_speed_ = 3000ms;
+                break;
+            }
         sleepFor();
         cout << "Text speed changed." << endl;
         sleepFor();
-
+            return;
+        }
+        else
+        {
+            cout << "Man you should really go to a math class. Or kindergarten. That's where you learn numbers." << endl;
+            sleepFor();
+        }
+        } while (true);
     }
 }

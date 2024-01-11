@@ -27,7 +27,11 @@ class Game
     // bool game_over = false;
     // bool player_dead = false;
     std::vector<Enemy> all_enemies_;
+#if defined(_DEBUG) or defined(DEBUG)
+    std::chrono::duration <double, std::milli> text_speed_ = 0ms;
+#else
     std::chrono::duration <double, std::milli> text_speed_ = 2000ms;
+#endif // DEBUG
 
     public:
     //----------------------[Constructor]----------------------------------
@@ -35,6 +39,8 @@ class Game
 
     //----------------------[Setters]-------------------------------------
     void setPlayer(Player);
+
+    Player getPlayer();
 
     //----------------------[Sleep For + Related Functions]---------------
     std::chrono::duration <double, std::milli> getTextSpeed();
@@ -48,6 +54,8 @@ class Game
     bool getAllEnemies();
     void setSeed(int);
     int getRandomNumber();
+    int getRandomNumber(int);
+    int getRandomNumber(int, int);
 
     //----------------------[Game Functions]------------------------------
     bool menu();
@@ -73,5 +81,4 @@ class Game
     int showSettings();
     void changeSettings(int);
 };
-
 #endif

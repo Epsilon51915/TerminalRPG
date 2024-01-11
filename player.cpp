@@ -213,11 +213,13 @@ bool Player::checkForLevelUp()
 
 void Player::levelUp()
 {
-    int exp_to_level_up = 100 + ( 50 * pow( (lvl_ - 1), (lvl_ / 6) ) );
+    int exp_to_level_up = 100 + ( 50 * pow( (lvl_ - 1), (lvl_ / 6.0) ) );
     int increment;
-    int level_up_selection;
-    lvl_++;
+    string level_up_selection;
+    int lvl_up_int;
+    bool invalid = true;
     setEXP(getEXP() - exp_to_level_up);
+    lvl_++;
     for(int i = 0; i < 6; i++)
     {
         increment = rand() % 4;
@@ -259,20 +261,15 @@ void Player::levelUp()
         cout << "Magic Defense: " << mgk_def_ << " + 2  ->  " << mgk_def_ + 2 << endl << endl;
         do
         {
-        cout << "You have " << i << " level up point(s) left to spend." << endl;
-        cout << "Select a stat you would like to spend 1 level up point on!" << endl;
-        cin >> level_up_selection;
-        if(level_up_selection < 1 || level_up_selection > 6)
-        {
-            cout << "Maybe I'll just take away points from you instead." << endl << endl;
-            cin.clear();
-            cin.ignore();
-            level_up_selection = 0;
-        }
-        else
-        {
-            switch(level_up_selection)
+            cout << "You have " << i << " level up point(s) left to spend." << endl;
+            cout << "Select a stat you would like to spend 1 level up point on!" << endl;
+            getline(cin, level_up_selection);
+            if(level_up_selection == "1" || level_up_selection == "2" || level_up_selection == "3" || level_up_selection == "4" || level_up_selection == "5" || level_up_selection == "6")
             {
+                lvl_up_int = stoi(level_up_selection);
+                invalid = false;
+                switch (lvl_up_int)
+                {
                 case 1:
                     max_hp_ += 2;
                     break;
@@ -296,9 +293,15 @@ void Player::levelUp()
                 case 6:
                     mgk_def_ += 2;
                     break;
+                }
+            
             }
-        }
-        } while(level_up_selection < 1 || level_up_selection > 6);
+            else
+            {
+                cout << "Maybe I'll just take away points from you instead." << endl << endl;
+            }
+        } while(invalid);
+        invalid = true;
     }
     setHP(max_hp_); // Heal player
 }

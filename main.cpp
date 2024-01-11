@@ -37,7 +37,7 @@ void run() {
 
   do
   {
-  } while(game.menu());
+  } while(game.menu() && game.getPlayer().getPlayerAreaInt() < 5);
 }
 
 int main()
