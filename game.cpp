@@ -118,7 +118,7 @@ int Game::selectScreen(){
             sleepFor();
             break;
 
-        case 3:
+        case 3: {
             chrono::duration <double, std::milli> new_text_speed = text_speed_;
             text_speed_ = 750ms;
             cout << "My Patreon is" << endl;
@@ -127,6 +127,7 @@ int Game::selectScreen(){
             sleepFor();
             text_speed_ = new_text_speed;
             break;
+        }
 
         case 4:
             text_speed_ = 500ms;
@@ -137,8 +138,7 @@ int Game::selectScreen(){
             cout << ". . ." << endl;
             sleepFor();
             return input;
-            break;
-        
+
         default:
             cout << "It seems like you're not good with numbers!" << endl;
             sleepFor();
