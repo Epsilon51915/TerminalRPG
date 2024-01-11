@@ -1596,13 +1596,14 @@ int Game::showSettings()
     return int_choice;
 }
 
-void Game::changeSettings(int choice)
+void Game::changeSettings(int input)
 {
-    if(choice == 1)
+    if(input == 1)
     {
+        string choice;
+        cout << endl << "Changing text speed:" << endl;
         do
         {
-        cout << endl <<"Changing text speed:" << endl;
         cout << "Select an option to change your text speed." << endl;
         cout << "[1. 0s]" << endl;
         cout << "[2. .5s]" << endl;
@@ -1610,44 +1611,46 @@ void Game::changeSettings(int choice)
         cout << "[4. 1.5s]" << endl;
         cout << "[5. 2s]" << endl;
         cout << "[6. 3s]" << endl;
-        cin >> choice;
-
-        switch (choice)
+        getline(cin, choice);
+        if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6")
         {
-        case 1:
-            text_speed_ = 0ms;
-            break;
+            int int_choice = stoi(choice);
+            switch (int_choice)
+            {
+            case 1:
+                text_speed_ = 0ms;
+                break;
 
-        case 2:
-            text_speed_ = 500ms;
-            break;
+            case 2:
+                text_speed_ = 500ms;
+                break;
 
-        case 3:
-            text_speed_ = 1000ms;
-            break;
+            case 3:
+                text_speed_ = 1000ms;
+                break;
 
-        case 4:
-            text_speed_ = 1500ms;
-            break;
+            case 4:
+                text_speed_ = 1500ms;
+                break;
 
-        case 5:
-            text_speed_ = 2000ms;
-            break;
+            case 5:
+                text_speed_ = 2000ms;
+                break;
 
-        case 6:
-            text_speed_ = 3000ms;
-            break;
-
-        default:
-            cout << "Man you should really go to a math class. Or kindergarten. That's where you learn numbers." << endl;
-            sleepFor();
-            break;
-        }
-        } while (choice < 1 || choice > 6);
-
+            case 6:
+                text_speed_ = 3000ms;
+                break;
+            }
         sleepFor();
         cout << "Text speed changed." << endl;
         sleepFor();
-
+            return;
+        }
+        else
+        {
+            cout << "Man you should really go to a math class. Or kindergarten. That's where you learn numbers." << endl;
+            sleepFor();
+        }
+        } while (true);
     }
 }
