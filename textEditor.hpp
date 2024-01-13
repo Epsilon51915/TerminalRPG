@@ -9,3 +9,4 @@ std::string toLowercaseCopy(std::string text);
 void trim(std::string& str, const unsigned char ch);
 
 void appendString(std::string& str);
+void findAndReplace(std::string& str, const std::string& query, const std::string& replacement);

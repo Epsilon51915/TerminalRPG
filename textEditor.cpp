@@ -35,3 +35,12 @@ void appendString(string& str)
     toLowercase(str);
     trim(str, ' ');
 }
+
+void findAndReplace(string& str, const string& query, const string& replacement)
+{
+    size_t index{str.find(query)};
+    if (index != str.npos)
+    {
+        str.replace(index, query.size(), replacement);
+    }
+}
