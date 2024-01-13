@@ -300,8 +300,13 @@ bool Game::menu()
 
 string Game::processString(const string& text)
 {
-    string output{text};
-    output = regex_replace(output, regex{"%name%"}, player_.getName());
+    string output = text;
+    if (output.find("%name%") != -1)
+    {
+        output.replace(output.find("%name%"), 6, player_.getName());
+    }
+    /*string output{text};
+    output = regex_replace(output, regex{"%name%"}, player_.getName());*/
     return output;
 }
 
