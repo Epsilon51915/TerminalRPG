@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "textEditor.hpp"
 
 using namespace std;
 
@@ -92,54 +93,60 @@ int Game::selectScreen(){
 
     do
     {
-    cout << endl << endl << "Options: " << endl;
-    cout << "[1. Start Game]" << "     [2. About]" << endl;
-    cout << endl;
-    cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
-    cout << endl;
-    getline(cin, temp);
-    input = stoi(temp); // FIX THIS <-----
-    cout << endl;
-    switch (input)
+        cout << endl << endl << "Options: " << endl;
+        cout << "[1. Start Game]" << "     [2. About]" << endl;
+        cout << endl;
+        cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
+        cout << endl;
+        getline(cin, temp);
+        appendString(temp);
+        cout << endl;
+        if (temp == "1" || temp == "2" || temp == "3" || temp == "4")
         {
-        case 1:
-            cout << "Beginning game!!" << endl << endl;
-            sleepFor();
-            break;
+            input = stoi(temp);
+            switch (input)
+            {
+            case 1:
+                cout << "Beginning game!!" << endl << endl;
+                sleepFor();
+                return input;
+                break;
 
-        case 2:
-            cout << "This is a small RPG created by a bored CSCI student" << endl;
-            sleepFor();
-            cout << "spanning X lines of C++ code, this is a tiny passion project" << endl;
-            sleepFor();
-            cout << "that has no purpose besides proving to myself that I can" << endl;
-            sleepFor();
-            cout << "do this. With that being said, enjoy!" << endl;
-            sleepFor();
-            break;
+            case 2:
+                cout << "This is a small RPG created by a bored CSCI student" << endl;
+                sleepFor();
+                cout << "spanning X lines of C++ code, this is a tiny passion project" << endl;
+                sleepFor();
+                cout << "that has no purpose besides proving to myself that I can" << endl;
+                sleepFor();
+                cout << "do this. With that being said, enjoy!" << endl;
+                sleepFor();
+                break;
 
-        case 3: {
-            chrono::duration <double, std::milli> new_text_speed = text_speed_;
-            text_speed_ = 750ms;
-            cout << "My Patreon is" << endl;
-            sleepFor();
-            cout << "up your ass!" << endl;
-            sleepFor();
-            text_speed_ = new_text_speed;
-            break;
+            case 3: {
+                chrono::duration <double, std::milli> new_text_speed = text_speed_;
+                text_speed_ = 750ms;
+                cout << "My Patreon is" << endl;
+                sleepFor();
+                cout << "up your ass!" << endl;
+                sleepFor();
+                text_speed_ = new_text_speed;
+                break;
+            }
+
+            case 4:
+                text_speed_ = 500ms;
+                cout << "Exiting program . . ." << endl;
+                sleepFor();
+                cout << ". . ." << endl;
+                sleepFor();
+                cout << ". . ." << endl;
+                sleepFor();
+                return input;
+            }
         }
-
-        case 4:
-            text_speed_ = 500ms;
-            cout << "Exiting program . . ." << endl;
-            sleepFor();
-            cout << ". . ." << endl;
-            sleepFor();
-            cout << ". . ." << endl;
-            sleepFor();
-            return input;
-
-        default:
+        else
+        {
             cout << "It seems like you're not good with numbers!" << endl;
             sleepFor();
             cout << "Don't worry, a lot of people aren't!" << endl;
@@ -148,9 +155,8 @@ int Game::selectScreen(){
             sleepFor();
             cout << "You've got this!" << endl;
             sleepFor();
-            break;
         }
-    } while(input !=  1);
+    } while(true);
 
     return input;
 }
@@ -226,6 +232,7 @@ bool Game::menu()
     cout << "Select an Option: ";
     string player_selection;
     getline(cin, player_selection);
+    appendString(player_selection);
     cout << endl;
     if (player_selection == "1")
     {
@@ -293,8 +300,8 @@ bool Game::menu()
 
 string Game::processString(const string& text)
 {
-    string output{text};
-    output = regex_replace(output, regex{"%name%"}, player_.getName());
+    string output = text;
+    findAndReplace(output, "%name%", player_.getName());
     return output;
 }
 
@@ -309,6 +316,7 @@ int Game::displayMonsterCatalogueMenu()
     cout << "Select an area: ";
     string area;
     getline(cin, area);
+    appendString(area);
     if (area == "1" || area == "2" || area == "3" || area == "4")
     {
         cout << endl;
@@ -1437,6 +1445,7 @@ bool Game::playerTurn()
     cout << "[1. Physical Attack]   [2. Magical Attack]" << endl;
     cout << "[3. Items]             [4. Run Away]" << endl;
     getline(cin, choice);
+    appendString(choice);
     sleepFor();
     if(choice != "1" && choice != "2" && choice != "3" && choice != "4")
     {
@@ -1587,6 +1596,7 @@ int Game::showSettings()
         cout << "[1. Edit Settings]" << endl;
         cout << "[2. Close]" << endl;
         getline(cin, choice);
+        appendString(choice);
         if(choice != "1" && choice != "2")
         {
             cout << "Nope. Try again." << endl;
@@ -1613,6 +1623,7 @@ void Game::changeSettings(int input)
         cout << "[5. 2s]" << endl;
         cout << "[6. 3s]" << endl;
         getline(cin, choice);
+        appendString(choice);
         if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6")
         {
             int int_choice = stoi(choice);

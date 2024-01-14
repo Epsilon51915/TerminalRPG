@@ -4,6 +4,7 @@
 #include <thread>
 
 #include "player.hpp"
+#include "textEditor.hpp"
 
 using namespace std;
 
@@ -264,6 +265,7 @@ void Player::levelUp()
             cout << "You have " << i << " level up point(s) left to spend." << endl;
             cout << "Select a stat you would like to spend 1 level up point on!" << endl;
             getline(cin, level_up_selection);
+            appendString(level_up_selection);
             if(level_up_selection == "1" || level_up_selection == "2" || level_up_selection == "3" || level_up_selection == "4" || level_up_selection == "5" || level_up_selection == "6")
             {
                 lvl_up_int = stoi(level_up_selection);
