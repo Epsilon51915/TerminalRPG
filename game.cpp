@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "textEditor.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -62,6 +63,7 @@ void Game::displayIntro()
 |   |                                                                   |   |
 |   |                                                                   |   |
 )str";
+    cout << RED << "N" << BOLDRED << "o" << GREEN << "w " << BOLDGREEN << "i" << BLUE << "n " << BOLDBLUE << "t" << MAGENTA << "e" << BOLDMAGENTA << "c" << BRIGHTMAGENTA << "h" << BOLDBRIGHTMAGENTA << "n" << CYAN << "i" << BOLDCYAN << "c" << ORANGE << "o" << BOLDORANGE << "l" << YELLOW << "o" << BOLDYELLOW << "r" << GREY << "!!" << RESET << endl;
     sleepFor();
 }
 

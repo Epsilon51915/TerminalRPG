@@ -5,6 +5,7 @@
 
 #include "player.hpp"
 #include "textEditor.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -100,14 +101,14 @@ void Player::changePlayerArea()
 // ---------------------------------[Master Getter]---------------------------------
 void Player::getStats()
 {
-    cout << getName() << "'s HP: " <<  getHP() << "/" << getMAX_HP() << endl;
-    cout << getName() << "'s ATK: " << getATK() << endl;
-    cout << getName() << "'s DEF: " << getDEF() << endl;
-    cout << getName() << "'s SPD: " << getSPD() << endl;
-    cout << getName() << "'s MGK_ATK: " << getMGK_ATK() << endl;
-    cout << getName() << "'s MGK_DEF: " << getMGK_DEF() << endl;
-    cout << getName() << "'s LVL: " << getLVL() << endl;
-    cout << getName() << "'s EXP: " << getEXP() << endl;
+    cout << getName() << "'s HP: " << RED << getHP() <<  "/" << CRIMSON << getMAX_HP() << RESET << endl;
+    cout << getName() << "'s ATK: " << RED << getATK() << RESET << endl;
+    cout << getName() << "'s DEF: " << GREY << getDEF() << RESET << endl;
+    cout << getName() << "'s SPD: " << CYAN << getSPD() << RESET << endl;
+    cout << getName() << "'s MGK_ATK: " << MAGENTA << getMGK_ATK() << RESET << endl;
+    cout << getName() << "'s MGK_DEF: " << GREY << getMGK_DEF() << RESET << endl;
+    cout << getName() << "'s LVL: " << DARKGREEN << getLVL() << RESET << endl;
+    cout << getName() << "'s EXP: " << GREEN << getEXP() << RESET << endl;
     cout << getName() << "'s Area: " << getPlayerArea() << endl << endl;
 }
 
@@ -252,14 +253,14 @@ void Player::levelUp()
         }
     }
     cout << "You have leveled up!!" << endl;
-    for(int i = 3; i > 0; i--)
+    for (int i = 3; i > 0; i--)
     {
-        cout << "Max HP: " << max_hp_ << " + 2  ->  " << max_hp_ + 2 << endl;
-        cout << "Attack: " << atk_ << " + 2  ->  " << atk_ + 2 << endl;
-        cout << "Defense: " << def_ << " + 2  ->  " << def_ + 2 << endl;
-        cout << "Speed: " << speed_ << " + 2  ->  " << speed_ + 2 << endl;
-        cout << "Magic Attack: " << mgk_atk_ << " + 2  ->  " << mgk_atk_ + 2 << endl;
-        cout << "Magic Defense: " << mgk_def_ << " + 2  ->  " << mgk_def_ + 2 << endl << endl;
+        cout << "Max HP: " << CRIMSON << max_hp_ << RESET << " + 2  ->  " << CRIMSON << max_hp_ + 2 << RESET << endl;
+        cout << "Attack: " << RED << atk_ << RESET<< " + 2  ->  " << RED << atk_ + 2 << RESET << endl;
+        cout << "Defense: " << GREY << def_ << RESET << " + 2  ->  " << GREY << def_ + 2 << RESET << endl;
+        cout << "Speed: " << CYAN << speed_ << RESET << " + 2  ->  " << CYAN << speed_ + 2 << RESET << endl;
+        cout << "Magic Attack: " << MAGENTA << mgk_atk_ << RESET << " + 2  ->  " << MAGENTA << mgk_atk_ + 2 << RESET << endl;
+        cout << "Magic Defense: " << GREY << mgk_def_ << RESET << " + 2  ->  " << GREY << mgk_def_ + 2 << RESET << endl << endl;
         do
         {
             cout << "You have " << i << " level up point(s) left to spend." << endl;
