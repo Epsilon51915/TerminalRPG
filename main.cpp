@@ -3,11 +3,13 @@
 #include <chrono>
 
 #include "game.hpp"
+#include "colors.hpp"
 
 using namespace std;
 using namespace std::chrono;
 
 void run() {
+    cout << RESET;
   high_resolution_clock::time_point previous = high_resolution_clock::now();
   Inventory temp;
   Game game;

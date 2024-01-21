@@ -20,6 +20,8 @@
 #define BOLDCYAN "\033[1;38;2;0;255;255m"
 #define GREY "\033[0;38;2;102;102;102m"
 #define CRIMSON "\033[0;38;2;114;27;27m"
+#define WHITE "\033[0;38;2;255;255;255m"
+#define GOLDENROD "\033[0;38;2;218;165;32m"
 #define RESET "\033[0m"
 
 #endif

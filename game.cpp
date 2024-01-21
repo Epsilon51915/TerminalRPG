@@ -82,9 +82,9 @@ void Game::displayLore()
 string Game::promptAndGetName()
 {
     string name;
-    cout << "What is your name?" << endl;
+    cout << "What is your name?" << WHITE << endl;
     getline(cin, name);
-    cout << endl;
+    cout << RESET << endl;
     return name;
 }
 
@@ -99,10 +99,10 @@ int Game::selectScreen(){
         cout << "[1. Start Game]" << "     [2. About]" << endl;
         cout << endl;
         cout << "[3. Patreon(?)]" << "     [4. Close Game]" << endl;
-        cout << endl;
+        cout << WHITE << endl;
         getline(cin, temp);
         appendString(temp);
-        cout << endl;
+        cout << RESET << endl;
         if (temp == "1" || temp == "2" || temp == "3" || temp == "4")
         {
             input = stoi(temp);
@@ -232,10 +232,11 @@ bool Game::menu()
     cout << "[3. Check Items]       {4. Monster Catalogue}" << endl;
     cout << "[5. Settings]          [6. Exit Game]" << endl;
     cout << "Select an Option: ";
+    cout << WHITE;
     string player_selection;
     getline(cin, player_selection);
     appendString(player_selection);
-    cout << endl;
+    cout << RESET << endl;
     if (player_selection == "1")
     {
         cout << "Beginning travels..." << endl;
@@ -315,10 +316,11 @@ int Game::displayMonsterCatalogueMenu()
     cout << "[Area 2: Forest]" << endl;
     cout << "[Area 3: Mountain]" << endl;
     cout << "[Area 4: Castle]" << endl;
-    cout << "Select an area: ";
+    cout << "Select an area: " << WHITE;
     string area;
     getline(cin, area);
     appendString(area);
+    cout << RESET;
     if (area == "1" || area == "2" || area == "3" || area == "4")
     {
         cout << endl;
@@ -337,7 +339,7 @@ void Game::displayMonsterCataloguePage(int area)
     {
         case 1:
         cout << "Plains Enemies:" << endl;
-        cout << "*----*----*----*----*----*----*----*" << endl;
+        cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         for(int i = 0; i < 5; i++)
         {
             cout << "Name: " << all_enemies_[i].getEnemyName() << endl;
@@ -349,13 +351,13 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
             break;
 
         case 2:
         cout << "Forest Enemies:" << endl;
-        cout << "*----*----*----*----*----*----*----*" << endl;
+        cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         for(int i = 1; i < 3; i++)
         {
             cout << "Name: " << all_enemies_[i].getEnemyName() << endl;
@@ -367,7 +369,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
         for(int i = 5; i < 9; i++)
         {
@@ -380,13 +382,13 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
             break;
 
         case 3:
         cout << "Mountain Enemies:" << endl;
-        cout << "*----*----*----*----*----*----*----*" << endl;
+        cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         for(int i = 2; i < 3; i++)
         {
             cout << "Name: " << all_enemies_[i].getEnemyName() << endl;
@@ -398,7 +400,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
         for(int i = 6; i < 7; i++)
         {
@@ -411,7 +413,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
         for(int i = 9; i < 14; i++)
         {
@@ -424,13 +426,13 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
             break;
 
         case 4:
         cout << "Castle Enemies:" << endl;
-        cout << "*----*----*----*----*----*----*----*" << endl;
+        cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         for(int i = 14; i < 22; i++)
         {
             cout << "Name: " << all_enemies_[i].getEnemyName() << endl;
@@ -442,7 +444,7 @@ void Game::displayMonsterCataloguePage(int area)
             cout << "MGK_DEF: " << all_enemies_[i].getEnemyMGKDEF() << endl;
             cout << "LVL: " << all_enemies_[i].getEnemyLVL() << endl;
             cout << processString(all_enemies_[i].getEnemyDescription()) << endl;
-            cout << "*----*----*----*----*----*----*----*" << endl;
+            cout << GOLDENROD << "*----*----*----*----*----*----*----*" << RESET << endl;
         }
             break;
     }
@@ -585,7 +587,7 @@ void Game::deathGameOver()
 {
     sleepFor();
     sleepFor();
-    cout << "You have died!" << endl;
+    cout << CRIMSON << "You have died!" << RESET << endl;
     sleepFor();
     cout << "Final stats: " << endl;
     sleepFor();
@@ -1445,10 +1447,11 @@ bool Game::playerTurn()
     do
     {
     cout << "[1. Physical Attack]   [2. Magical Attack]" << endl;
-    cout << "[3. Items]             [4. Run Away]" << endl;
+    cout << "[3. Items]             [4. Run Away]" << WHITE << endl;
     getline(cin, choice);
     appendString(choice);
     sleepFor();
+    cout << RESET;
     if(choice != "1" && choice != "2" && choice != "3" && choice != "4")
     {
         cout << "I should just forfeit your turn. That's what you deserve for being a moron." << endl;
@@ -1466,8 +1469,9 @@ bool Game::playerTurn()
                     damage = 0;
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
-                cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                cout << WHITE << "You dealt " << RED << damage << WHITE << " damage to " << enemy_.getEnemyName() << "!!" << RESET << endl;
                 sleepFor();
+                cout << endl;
                 return true;
                 break;
 
@@ -1478,8 +1482,9 @@ bool Game::playerTurn()
                     damage = 0;
                 }
                 enemy_.setEnemyHP(enemy_.getEnemyHP() - damage);
-                cout << "You dealt " << damage << " damage to " << enemy_.getEnemyName() << "!!" << endl;
+                cout << WHITE << "You dealt " << RED << damage << WHITE << " damage to " << enemy_.getEnemyName() << "!!" << RESET << endl;
                 sleepFor();
+                cout << endl;
                 return true;
                 break;
 
@@ -1541,7 +1546,7 @@ void Game::enemyTurn()
                 damage = 0;
             }
         }
-        cout << enemy_.getEnemyName() << " attacked you and dealt " << damage << " damage!" << endl;
+        cout << enemy_.getEnemyName() << " attacked you and dealt " << RED << damage << RESET << " damage!" << endl << endl;
         player_.setHP(player_.getHP() - damage);
     }
 }
@@ -1596,9 +1601,10 @@ int Game::showSettings()
     do
     {
         cout << "[1. Edit Settings]" << endl;
-        cout << "[2. Close]" << endl;
+        cout << "[2. Close]" << WHITE << endl;
         getline(cin, choice);
         appendString(choice);
+        cout << RESET;
         if(choice != "1" && choice != "2")
         {
             cout << "Nope. Try again." << endl;
@@ -1623,9 +1629,10 @@ void Game::changeSettings(int input)
         cout << "[3. 1s]" << endl;
         cout << "[4. 1.5s]" << endl;
         cout << "[5. 2s]" << endl;
-        cout << "[6. 3s]" << endl;
+        cout << "[6. 3s]" << WHITE << endl;
         getline(cin, choice);
         appendString(choice);
+        cout << RESET;
         if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6")
         {
             int int_choice = stoi(choice);

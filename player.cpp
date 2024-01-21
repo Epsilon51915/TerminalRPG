@@ -101,15 +101,15 @@ void Player::changePlayerArea()
 // ---------------------------------[Master Getter]---------------------------------
 void Player::getStats()
 {
-    cout << getName() << "'s HP: " << RED << getHP() <<  "/" << CRIMSON << getMAX_HP() << RESET << endl;
-    cout << getName() << "'s ATK: " << RED << getATK() << RESET << endl;
-    cout << getName() << "'s DEF: " << GREY << getDEF() << RESET << endl;
-    cout << getName() << "'s SPD: " << CYAN << getSPD() << RESET << endl;
-    cout << getName() << "'s MGK_ATK: " << MAGENTA << getMGK_ATK() << RESET << endl;
-    cout << getName() << "'s MGK_DEF: " << GREY << getMGK_DEF() << RESET << endl;
-    cout << getName() << "'s LVL: " << DARKGREEN << getLVL() << RESET << endl;
-    cout << getName() << "'s EXP: " << GREEN << getEXP() << RESET << endl;
-    cout << getName() << "'s Area: " << getPlayerArea() << endl << endl;
+    cout << WHITE << getName() << "'s HP: " << RED << getHP() <<  "/" << CRIMSON << getMAX_HP() << RESET << endl;
+    cout << WHITE << getName() << "'s ATK: " << RED << getATK() << RESET << endl;
+    cout << WHITE << getName() << "'s DEF: " << GREY << getDEF() << RESET << endl;
+    cout << WHITE << getName() << "'s SPD: " << CYAN << getSPD() << RESET << endl;
+    cout << WHITE << getName() << "'s MGK_ATK: " << MAGENTA << getMGK_ATK() << RESET << endl;
+    cout << WHITE << getName() << "'s MGK_DEF: " << GREY << getMGK_DEF() << RESET << endl;
+    cout << WHITE << getName() << "'s LVL: " << DARKGREEN << getLVL() << RESET << endl;
+    cout << WHITE << getName() << "'s EXP: " << GREEN << getEXP() << RESET << endl;
+    cout << WHITE << getName() << "'s Area: " << getPlayerArea() << RESET << endl << endl;
 }
 
 // ---------------------------------[Getters]---------------------------------------
