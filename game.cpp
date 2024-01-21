@@ -1397,6 +1397,7 @@ bool Game::combat()
                 enemyTurn();
                 if(player_.getHP() <= 0)
                 {
+                    player_.setHP(0);
                     return false;
                 }
             }
@@ -1406,6 +1407,7 @@ bool Game::combat()
             enemyTurn();
             if(player_.getHP() <= 0)
             {
+                player_.setHP(0);
                 return false;
             }
             
