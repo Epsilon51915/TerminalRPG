@@ -1496,6 +1496,7 @@ bool Game::playerTurn()
                 sleepFor();
                 cout << "Good Luck!!!" << endl;
                 sleepFor();
+                cout << endl;
                 return true;
                 break;
 
@@ -1518,15 +1519,15 @@ void Game::enemyTurn()
     // Enemy attacks. If enemy is a rock/college student, do unique battle.
     if(enemy_.getEnemyName() == "Small Rock" || enemy_.getEnemyName() == "Medium Rock" || enemy_.getEnemyName() == "Large Rock")
     {
-        cout << enemy_.getEnemyName() << " just sat there. You know. Because it's a rock. Why are you fighting a rock again?" << endl;
+        cout << enemy_.getEnemyName() << " just sat there. You know. Because it's a rock. Why are you fighting a rock again?" << endl << endl;
     }
     else if(enemy_.getEnemyName() == "Boulder")
     {
-        cout << "One must imagine " << player_.getName() << " trying to beat the shit out of a boulder." << endl;
+        cout << "One must imagine " << player_.getName() << " trying to beat the shit out of a boulder." << endl << endl;
     }
     else if(enemy_.getEnemyName() == "Weird College Student")
     {
-        cout << "The kid ran away. Weird." << endl;
+        cout << "The kid ran away. Weird." << endl << endl;
         enemy_.setEnemyHP(0);
     }
     else
