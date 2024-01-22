@@ -1,0 +1,27 @@
+#ifndef COLORS_HPP
+#define COLORS_HPP
+
+#define RED "\033[0;38;2;255;0;0m"
+#define BOLDRED "\033[1;38;2;255;0;0m"
+#define ORANGE "\033[0;38;2;255;165;0m"
+#define BOLDORANGE "\033[1;38;2;255;165;0m"
+#define YELLOW "\033[0;38;2;255;255;0m"
+#define BOLDYELLOW "\033[1;38;2;255;255;0m"
+#define GREEN "\033[0;38;2;0;255;0m"
+#define DARKGREEN "\033[0;38;2;0;128;0m"
+#define BOLDGREEN "\033[1;38;2;0;255;0m"
+#define BLUE "\033[0;38;2;0;0;255m"
+#define BOLDBLUE "\033[1;38;2;0;0;255m"
+#define MAGENTA "\033[0;38;2;128;0;128m"
+#define BOLDMAGENTA "\033[1;38;2;128;0;128m"
+#define BRIGHTMAGENTA "\033[0;38;2;255;0;255m"
+#define BOLDBRIGHTMAGENTA "\033[1;38;2;255;0;255m"
+#define CYAN "\033[0;38;2;0;255;255m"
+#define BOLDCYAN "\033[1;38;2;0;255;255m"
+#define GREY "\033[0;38;2;102;102;102m"
+#define CRIMSON "\033[0;38;2;114;27;27m"
+#define WHITE "\033[0;38;2;255;255;255m"
+#define GOLDENROD "\033[0;38;2;218;165;32m"
+#define RESET "\033[0m"
+
+#endif

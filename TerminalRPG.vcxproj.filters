@@ -50,5 +50,8 @@
     <ClInclude Include="textEditor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="colors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

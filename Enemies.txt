@@ -4,19 +4,19 @@ Small Rock,10,0,5,0,0,0,1,0,A tiny pebble on the floor. It's a wonder why you st
 Medium Rock,15,0,7,0,0,0,1,1,A moderately sized rock on the ground. He wanted nothing to do with you, and now you have a problem with him.
 Large Rock,20,0,10,0,0,0,2,2,A pretty big rock. He probably has a family. You ever think of that?
 Snake,6,2,2,7,1,1,1,3,A small snake. You could probably just step on him if you really wanted. Too bad I don't give you that option.
-Forest Creature,12,1,3,5,4,6,2,4,A small being whos lived in the forest, forest magic permeating through its body. ... They're actually pretty frail
+Forest Creature,12,1,3,5,4,6,2,4,A small being who resides in the forest. He must be vegan, given how weak he is.
 Bear,14,6,6,5,2,3,2,5,Just a bear. You really have problems with the environment, don't you?
 Spider,8,3,1,11,5,7,2,6,A spider. Yeah I have no problems with you killing this one. Yuck.
 Tree,17,5,9,0,8,10,3,7,This is literally just a tree. I have no clue why you thought this was a threat to you.
 Angry Tree,17,9,5,0,10,7,3,8,An Angry Tree. Now I think you're justified in trying to fight an inanimate object. Come to think of it, how did you manage to piss off an inanimate object?
 Boulder,35,0,50,0,0,0,10,9,One MUST imagine %name% trying to beat the hell out of a boulder
-Rock Snake,13,7,9,6,3,4,4,10,A snake that learned its lesson from last time. He's got armour made of stone, making him much more impervious to physical attacks.
+Rock Snake,13,7,9,6,3,4,4,10,A snake that learned its lesson from last time. He's got armour made of stone, making him much more impervious to being stomped on.
 Golem,25,10,15,5,10,5,5,11,A giant rock monster known for living in the mountains and terrorising hikers. Usualy it's just harmless pranks, but this one seems especially upset.
 Skeleton Climber,15,8,5,14,13,16,4,12,The reanimated skeleton of a lost hiker. I'd be careful with this one, that climbing axe looks like it'll hurt.
 Ozone Feaster,20,11,13,17,14,18,5,13,A gigantic beast grown by consuming the ozone of the planet. He's... admittedly pretty slow. I mean, you don't get that big and have the speed of Usain Bolt.
-Weird College Student,10000,0,10000,10000,0,10000,10000,-1,A strange teenager. Legends say he's God, the one who created this world. But honestly... how could a God be so weak-looking?
-Forest Creature +,27,8,14,24,19,22,5,14,The reincarnation of past forest creatures. These ones are a lot more durable, probably due to their souls travelling through Hell or something.
-Bear +,34,17,19,20,12,14,5,15,Yeah, this is karma for killing all those bears earlier. You feel any remorse yet?
+Weird College Student,10000,0,10000,10000,0,10000,10000,-1,Hey, I know that guy!
+Forest Creature +,27,8,14,24,19,22,5,14,The reincarnation of past forest creatures. These ones are a lot more durable, so they're probably vegetarians.
+Bear +,34,17,19,20,12,14,5,15,Yeah, this is probably karma for killing all those bears earlier. You feel any remorse yet?
 Angry Tree +,36,22,21,0,27,31,5,16,Wow. Not only is this tree angry, it seems to be fueled by the forest-murder that you did a while ago.
 Spider +,26,14,11,28,27,24,5,17,Ewewewewew it's bigger than the other ones!!!
 Ozone Feaster +,45,30,32,16,29,32,6,18,Either this guy got a LOT more ozone to eat, or the small rooms of this castle REALLY accentuate his fatness.
