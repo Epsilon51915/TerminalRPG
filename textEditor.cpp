@@ -36,6 +36,13 @@ void appendString(string& str)
     trim(str, ' ');
 }
 
+std::string appendOtherString(string str)
+{
+    toLowercase(str);
+    trim(str, ' ');
+    return str;
+}
+
 void findAndReplace(string& str, const string& query, const string& replacement)
 {
     size_t index{str.find(query)};

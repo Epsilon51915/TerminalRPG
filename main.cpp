@@ -4,6 +4,7 @@
 
 #include "game.hpp"
 #include "colors.hpp"
+#include "textEditor.hpp"
 
 using namespace std;
 using namespace std::chrono;
@@ -31,6 +32,12 @@ void run() {
   user.setInventory(temp);
   game.setPlayer(user);
   game.sleepFor();
+  if (appendOtherString(user.getName()) == "trongle")
+  {
+      cout << "The curse of TRONGLE" << endl;
+      game.sleepFor();
+      return;
+  }
   game.displayLore();
 
   high_resolution_clock::time_point lap = high_resolution_clock::now();
