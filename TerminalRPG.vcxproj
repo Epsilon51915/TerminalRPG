@@ -131,7 +131,7 @@ powershell -c "Compress-Archive -Update -Path \"$(OutDir)$(TargetFileName)\",\"$
   <ItemGroup>
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="textEditor.cpp" />
@@ -140,7 +140,7 @@ powershell -c "Compress-Archive -Update -Path \"$(OutDir)$(TargetFileName)\",\"$
     <ClInclude Include="colors.hpp" />
     <ClInclude Include="enemy.hpp" />
     <ClInclude Include="game.hpp" />
-    <ClInclude Include="inventory.hpp" />
+    <ClInclude Include="item.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="textEditor.hpp" />
   </ItemGroup>

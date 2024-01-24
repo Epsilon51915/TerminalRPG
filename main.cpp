@@ -12,7 +12,6 @@ using namespace std::chrono;
 void run() {
     cout << RESET;
   high_resolution_clock::time_point previous = high_resolution_clock::now();
-  Inventory temp;
   Game game;
   if (!game.getAllEnemies())
   {
@@ -29,7 +28,6 @@ void run() {
   }
 
   user.setName(game.promptAndGetName());
-  user.setInventory(temp);
   game.setPlayer(user);
   game.sleepFor();
   if (appendOtherString(user.getName()) == "trongle")

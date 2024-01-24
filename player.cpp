@@ -23,6 +23,7 @@ Player::Player()
     lvl_ = 1;
     exp_ = 0;
     player_area_ = 1;
+    setInventory();
 }
 
 //----------------------------------[Setters]---------------------------------------
@@ -43,9 +44,29 @@ void Player::setName(string name)
     }
 }
 
-void Player::setInventory(Inventory inventory)
+void Player::setInventory()
 {
-    player_inventory = inventory.createInventory();
+    Item potion1("Potion Level 1");
+    Item potion2("Potion Level 2");
+    Item potion3("Potion Level 3");
+    Item defense_flask1("Defensive Flask Level 1");
+    Item defense_flask2("Defensive Flask Level 2");
+    Item defense_flask3("Defensive Flask Level 3");
+    Item offense_flask1("Offensive Flask Level 1");
+    Item offense_flask2("Offensive Flask Level 2");
+    Item offense_flask3("Offensive Flask Level 3");
+    Item sand("Pouch of Sand");
+
+    player_inventory[0] = potion1;
+    player_inventory[1] = potion2;
+    player_inventory[2] = potion3;
+    player_inventory[3] = defense_flask1;
+    player_inventory[4] = defense_flask2;
+    player_inventory[5] = defense_flask3;
+    player_inventory[6] = offense_flask1;
+    player_inventory[7] = offense_flask2;
+    player_inventory[8] = offense_flask3;
+    player_inventory[9] = sand;
 }
 
 void Player::setMaxHP(int max_hp)
@@ -194,12 +215,36 @@ int Player::getPlayerAreaInt()
 // ---------------------------------[Interfaces]-----------------------------------------------
 void Player::displayInventory()
 {
-    int size = player_inventory.size();
-    for(auto i = 0; i < size; i++)
+    
+    /*
+    for(auto i = 0; i < 10; i++)
     {
         cout << "[ " << player_inventory[i].getItemName() << " (" << player_inventory[i].getItemQuantity() << "/10) ]" << endl;
     }
     cout << endl;
+    */
+
+    string s;
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "||                          Name  of  Item:                              | Amount in |     Max    ||" << endl;
+    cout << "||                                                                       | Inventory |    Amount  ||" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl;// |
+    for (int i = 0; i < 10; i++)
+    {
+        s = "|| ";
+        s += player_inventory[i].getItemName();
+        while (s.length() < 73)
+        {
+            s += " ";
+        }
+        s += "|     ";
+        s += to_string(player_inventory[i].getItemQuantity());
+        s += "     |";
+        s += "     10     ||"; // Change with max item amount
+        cout << s << endl;
+        cout << "----------------------------------------------------------------------------------------------------" << endl;
+    }
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
 }
 
 bool Player::checkForLevelUp()

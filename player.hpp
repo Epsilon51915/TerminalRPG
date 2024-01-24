@@ -7,7 +7,7 @@
 #include <cmath>
 #include <string>
 
-#include "inventory.hpp"
+#include "item.hpp"
 #include "enemy.hpp"
 
 class Player
@@ -24,7 +24,7 @@ class Player
     int mgk_def_;
     int lvl_;
     int exp_;
-    std::vector<Inventory> player_inventory;
+    Item player_inventory[10];
     int player_area_;
 
     public:
@@ -43,7 +43,7 @@ class Player
     void setMGKDEF(int);
     void setLVL(int);
     void setEXP(int);
-    void setInventory(Inventory);
+    void setInventory();
     void changePlayerArea();
 
     // -----------------------------------[Getters]-------------------------------------------

@@ -13,7 +13,7 @@
 
 #include "enemy.hpp"
 #include "player.hpp"
-#include "inventory.hpp"
+#include "item.hpp"
 
 using namespace std::chrono_literals;
 
